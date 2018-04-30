@@ -3,13 +3,14 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
+import { createStructuredSelector } from 'react-redux';
 import { login, logout } from './actions/auth';
 import registerServiceWorker from './registerServiceWorker';
 import LoadingPage from './components/LoadingPage';
 import 'normalize.css/normalize.css';
-import './styles/styles.scss';
+import './styles/styles.css';
 
-const store = configureStore();
+export const store = configureStore();
 
 const jsx = (
   <Provider store={store}>
@@ -29,16 +30,20 @@ const renderApp = () => {
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 registerServiceWorker();
 
-// firebase.auth().onAuthStateChanged(user => {
-//   if (user) {
-//     store.dispatch(login(user.uid));
-//     store.dispatch(startSetExpenses()).then(() => {
-//       renderApp();
-//       history.push('/dashboard');
-//     });
-//   } else {
-//     store.dispatch(logout());
-//     renderApp();
-//     history.push('/');
-//   }
-// });
+const determinePathToRender = authState => {
+  if (!!authState.user) {
+    renderApp();
+    console.log('should go to /dashboard');
+    history.push('/dashboard');
+  } else {
+    renderApp();
+    console.log('should go to /');
+    history.push('/');
+  }
+};
+
+determinePathToRender(store.getState().auth);
+
+store.subscribe(() => {
+  determinePathToRender(store.getState().auth);
+});

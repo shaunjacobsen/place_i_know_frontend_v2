@@ -1,26 +1,36 @@
 import axios from 'axios';
+import { store } from './../index';
 
-export const login = uid => {
+export const signIn = user => {
   return {
-    type: 'LOGIN',
-    uid,
+    type: 'SIGN_IN',
+    user,
   };
 };
 
-export const startLogin = () => {
-  return () => {
-    return {};
+export const startSignIn = data => {
+  return async () => {    
+    try {
+      const request = await axios.post('//localhost:9292/signin', data);
+      if (request.status === 200) {
+        const user = request.data;
+        console.log(user);
+        store.dispatch(signIn(user));
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 };
 
-export const logout = () => {
+export const signOut = () => {
   return {
-    type: 'LOGOUT',
+    type: 'SIGN_OUT',
   };
 };
 
-export const startLogout = () => {
+export const startSignOut = () => {
   return () => {
-    return {};
+    store.dispatch(signOut());
   };
 };

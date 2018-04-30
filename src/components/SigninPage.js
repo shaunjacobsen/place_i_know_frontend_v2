@@ -1,21 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { startLogin } from './../actions/auth';
+import { startSignIn, startSignOut } from './../actions/auth';
+import SignInForm from './SignInForm';
 
-export const SigninPage = props => (
-  <div className="box-layout">
-    <div className="box-layout__box">
-      <h1 className="box-layout__title">Expensify</h1>
-      <p>Manage your expenses!</p>
-      <button className="button" onClick={props.startLogin}>Login with Google</button>
-    </div>
-  </div>
-);
+export class SignInPage extends React.Component {
+  onSubmit = data => {
+    this.props.startSignIn(data);
+  };
+
+  render() {
+    return (
+      <div className="box-layout">
+        <div className="box-layout__box">
+          <img
+            className="box-layout__header-image"
+            src="images/logo.png"
+            alt="Place I Know"
+          />
+          <h1 className="box-layout__title">Welcome</h1>
+          <SignInForm onSubmit={this.onSubmit} />
+        </div>
+      </div>
+    );
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
-    startLogin: () => dispatch(startLogin()),
+    startSignIn: data => dispatch(startSignIn(data)),
   };
 };
 
-export default connect(undefined, mapDispatchToProps)(SigninPage);
+export default connect(undefined, mapDispatchToProps)(SignInPage);

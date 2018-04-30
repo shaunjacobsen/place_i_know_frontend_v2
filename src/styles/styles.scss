@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,400i,700,800');
+@import '~antd/dist/antd.css';
 @import './base/settings';
 @import './base/base';
 @import './components/box-layout.scss';
@@ -11,4 +12,8 @@
 @import './components/list.scss';
 @import './components/loader.scss';
 @import './components/page-header.scss';
+@import './components/page-layout.scss';
+@import './components/sidebar.scss';
+@import './components/user-info.scss';
 @import './components/visibility.scss';
+@import './overrides/antd.scss';

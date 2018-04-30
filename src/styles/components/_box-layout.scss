@@ -13,10 +13,15 @@
   border-radius: 3px;
   padding: $l-size $m-size;
   text-align: center;
-  width: 25rem;
+  width: 50vw;
 }
 
 .box-layout__title {
+  font-size: $font-size-large;
   line-height: 1;
   margin: 0 0 $m-size 0;
+}
+
+.box-layout__header-image {
+  width: 256px;
 }
