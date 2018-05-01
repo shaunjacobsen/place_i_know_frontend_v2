@@ -1,16 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { startSignIn, startSignOut } from './../actions/auth';
+import { signIn, startSignOut } from './../actions/auth';
 import SignInForm from './SignInForm';
 
 export class SignInPage extends React.Component {
   onSubmit = data => {
-    this.props.startSignIn(data);
+    this.props.signIn(data);
   };
 
   render() {
     return (
-      <div className="box-layout">
+      <div className="box-layout signin-page">
         <div className="box-layout__box">
           <img
             className="box-layout__header-image"
@@ -27,7 +27,7 @@ export class SignInPage extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    startSignIn: data => dispatch(startSignIn(data)),
+    signIn: data => dispatch(signIn(data)),
   };
 };
 

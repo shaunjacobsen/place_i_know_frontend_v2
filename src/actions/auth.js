@@ -1,25 +1,39 @@
 import axios from 'axios';
-import { store } from './../index';
 
-export const signIn = user => {
-  return {
-    type: 'SIGN_IN',
-    user,
-  };
-};
-
-export const startSignIn = data => {
-  return async () => {    
+export const signIn = (data) => {
+  return async (dispatch) => {
+    dispatch(signInStart());
     try {
       const request = await axios.post('//localhost:9292/signin', data);
       if (request.status === 200) {
         const user = request.data;
-        console.log(user);
-        store.dispatch(signIn(user));
+        const authToken = request.headers['x-auth']
+        localStorage.setItem('authKey', authToken);
+        dispatch(signInSuccess(user, authToken));
       }
     } catch (e) {
-      console.log(e);
+      dispatch(signInError('Login error here'));
     }
+  };
+};
+
+export const signInStart = () => {
+  return {
+    type: 'SIGN_IN_START',
+  };
+};
+export const signInSuccess = (user, authToken) => {
+  return {
+    type: 'SIGN_IN_SUCCESS',
+    user,
+    authToken,
+  };
+};
+
+export const signInError = error => {
+  return {
+    type: 'SIGN_IN_ERROR',
+    error,
   };
 };
 
@@ -30,7 +44,18 @@ export const signOut = () => {
 };
 
 export const startSignOut = () => {
-  return () => {
-    store.dispatch(signOut());
+  return async (dispatch) => {
+    try {
+      const activeAuthToken = localStorage.getItem('authKey');
+      const request = await axios.post('//localhost:9292/signout', {
+        token: activeAuthToken,
+      });
+      if (request.status === 200) {
+        localStorage.clear();
+        dispatch(signOut());
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 };
