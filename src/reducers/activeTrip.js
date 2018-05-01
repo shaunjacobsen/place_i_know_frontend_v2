@@ -49,6 +49,7 @@ export default (state = initialTripState, action) => {
       return {
         ...state,
         itinerary: {
+          ...state.itinerary,
           loading: true,
           error: null,
           activeDate: action.date,
@@ -58,6 +59,8 @@ export default (state = initialTripState, action) => {
       return {
         ...state,
         itinerary: {
+          ...state.itinerary,
+          activeDate: action.date,
           loading: false,
           error: null,
           dates: {
@@ -70,6 +73,7 @@ export default (state = initialTripState, action) => {
       return {
         ...state,
         itinerary: {
+          ...state.itinerary,
           loading: false,
           error: action.error,
         },

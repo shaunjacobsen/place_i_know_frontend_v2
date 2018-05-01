@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { Button } from 'antd';
 import { getItineraryEventsForDate } from './../../actions/activeTrip';
+import ItineraryDatesSelectorOption from './ItineraryDatesSelectorOption';
 const ButtonGroup = Button.Group;
 
 export class ItineraryDatesSelector extends React.Component {
@@ -10,19 +11,12 @@ export class ItineraryDatesSelector extends React.Component {
     super(props);
   }
 
-  selectDate(date) {
-    console.log('selectDate clicked', date);
-    this.props.selectDate(date);
-  }
-
   render() {
     return (
       <div>
         <ButtonGroup>
           {this.props.dates.map(date => (
-            <Button key={date} onClick={this.selectDate}>
-              {moment(date).format('ddd D MMM')}
-            </Button>
+            <ItineraryDatesSelectorOption key={date} date={date} />
           ))}
         </ButtonGroup>
       </div>
@@ -38,10 +32,4 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    selectDate: date => dispatch(getItineraryEventsForDate(date)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ItineraryDatesSelector);
+export default connect(mapStateToProps)(ItineraryDatesSelector);
