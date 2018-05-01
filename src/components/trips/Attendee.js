@@ -1,22 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {Avatar} from 'antd';
-import { getAttendee } from '../../actions/attendee';
+import { Avatar, Popover } from 'antd';
 
-export class Attendee extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount() {
-    this.props.dispatch(getAttendee(this.props.userId));
-  }
-
-  render() {
-    return (
-      <div>
-        <Avatar src={} />
-      </div>
-    )
-  }
-}
+export const Attendee = props => {
+  return (
+    <div style={{display: 'inline-block', paddingRight: 5, paddingBottom: 5}}>
+      <Popover content={props.fullName} placement="bottom">
+        <Avatar src={props.image} shape="square" size="large" />
+      </Popover>
+    </div>
+  );
+};

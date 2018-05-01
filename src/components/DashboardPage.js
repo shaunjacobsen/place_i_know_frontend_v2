@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Spin, Icon, Col, Row } from 'antd';
 import { TripCard } from './trips/TripCard';
 import { getTrips } from '../actions/trip';
+import { resetActiveTrip } from '../actions/activeTrip';
 
 export class Dashboard extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export class Dashboard extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(getTrips());
+    this.props.dispatch(resetActiveTrip());
   }
 
   renderTrips() {
@@ -32,7 +34,7 @@ export class Dashboard extends React.Component {
     );
   }
 
-  content() {
+  renderContent() {
     if (this.props.error) {
       return <div />;
     } else if (this.props.loading) {
@@ -48,7 +50,7 @@ export class Dashboard extends React.Component {
         <h1>Welcome, {this.props.user.firstName}!</h1>
         <div className="content-card">
           <h2>My Trips</h2>
-          {this.content()}
+          {this.renderContent()}
         </div>
       </div>
     );
