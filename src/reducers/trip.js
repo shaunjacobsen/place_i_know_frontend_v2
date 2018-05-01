@@ -7,21 +7,21 @@ export default (state = initialTripState, action) => {
         ...state,
         loading: true,
         error: null,
-        trips: action.trips,
+        tripsList: action.trips,
       };
     case 'GET_TRIPS_SUCCESS':
       return {
         ...state,
         loading: false,
         error: null,
-        trips: action.trips,
+        tripsList: action.trips,
       };
     case 'GET_TRIPS_ERROR':
       return {
         ...state,
         loading: false,
         error: action.error,
-        trips: [],
+        tripsList: [],
       };
     default:
       return state;
