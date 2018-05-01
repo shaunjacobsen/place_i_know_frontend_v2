@@ -20,9 +20,12 @@ export class Dashboard extends React.Component {
           <Col key={trip.trip_id} xs={24} md={8}>
             <TripCard
               key={trip.trip_id}
+              tripId={trip.trip_id}
               title={trip.title}
               image={trip.image.secure_url}
-           startDate={trip.start_date} endDate={trip.end_date} />
+              startDate={trip.start_date}
+              endDate={trip.end_date}
+            />
           </Col>
         ))}
       </Row>
@@ -33,7 +36,7 @@ export class Dashboard extends React.Component {
     if (this.props.error) {
       return <div />;
     } else if (this.props.loading) {
-      return <Spin indicator={<Icon type="loading" spin />} />;
+      return <Spin size="large" indicator={<Icon type="loading" spin />} />;
     } else if (this.props.trips) {
       return this.renderTrips();
     }
@@ -43,8 +46,10 @@ export class Dashboard extends React.Component {
     return (
       <div className="content-area">
         <h1>Welcome, {this.props.user.firstName}!</h1>
-        <h2>My Trips</h2>
-        {this.content()}
+        <div className="content-card">
+          <h2>My Trips</h2>
+          {this.content()}
+        </div>
       </div>
     );
   }
@@ -53,7 +58,7 @@ export class Dashboard extends React.Component {
 const mapStateToProps = state => {
   return {
     user: state.auth.user,
-    trips: state.trips.trips,
+    trips: state.trips.tripsList,
     loading: state.trips.loading,
     error: state.trips.error,
   };

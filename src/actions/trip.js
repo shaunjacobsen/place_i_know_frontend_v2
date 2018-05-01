@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { store } from './../index';
 
-export const getTripsStart = error => {
+export const getTripsStart = () => {
   return {
     type: 'GET_TRIPS_START',
     error: null,
@@ -36,7 +36,7 @@ export const getTrips = () => {
         dispatch(getTripsSuccess(trips));
       }
     } catch (e) {
-      dispatch(getTripsError('error'))
+      dispatch(getTripsError('error'));
     }
   };
 };
