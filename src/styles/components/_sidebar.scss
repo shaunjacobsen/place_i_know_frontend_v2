@@ -2,8 +2,9 @@
   background: $slate-grey;
   flex: 0 0 240px;
   height: 100vh;
+  position: fixed;
   width: 265px;
-  z-index: 1000;
+  z-index: 6000;
 }
 
 .sidebar {
