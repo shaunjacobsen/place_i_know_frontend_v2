@@ -6,6 +6,11 @@
   z-index: 1000;
 }
 
+.sidebar {
+  background: linear-gradient($slate-grey, darken($slate-grey, 25%), transparent), url("/images/cover.jpg") no-repeat center; 
+  background-size: cover;
+}
+
 .sidebar__header {
   align-items: center;
   background: darken($slate-grey, 5%);

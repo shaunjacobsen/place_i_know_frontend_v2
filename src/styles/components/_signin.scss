@@ -1,0 +1,32 @@
+.box-layout {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
+.box-layout__box {
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.16);
+  padding: $l-size $m-size;
+  text-align: center;
+  width: 35vw;
+}
+
+.box-layout__title {
+  font-size: $font-size-large;
+  font-weight: 200;
+  line-height: 1;
+  margin: $l-size 0 $l-size 0;
+}
+
+.box-layout__header-image {
+  width: 256px;
+}
+
+.signin-page {
+  background-image: url('/images/tokyo.jpg');
+  background-size: cover;
+}
