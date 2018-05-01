@@ -4,8 +4,9 @@ import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { createStructuredSelector } from 'react-redux';
-import { login, logout } from './actions/auth';
+import { signInSuccess, signOut } from './actions/auth';
 import registerServiceWorker from './registerServiceWorker';
+import { getAuthTokenDetails } from './helpers/signInActions.js';
 import LoadingPage from './components/LoadingPage';
 import 'normalize.css/normalize.css';
 import './styles/styles.css';
@@ -27,23 +28,37 @@ const renderApp = () => {
   }
 };
 
+const isUserSignedInOnBrowser = () => {
+  const sessionKey = localStorage.getItem('authKey');
+  if (sessionKey) {
+    return true;
+  }
+  return false;
+};
+
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 registerServiceWorker();
 
 const determinePathToRender = authState => {
   if (!!authState.user) {
     renderApp();
-    console.log('should go to /dashboard');
-    history.push('/dashboard');
+    history.push('/home');
+  } else if (!authState.user && isUserSignedInOnBrowser()) {
+    renderApp();
+    // TODO remove this line after adding more routes
+    console.log('should not appear a lot');
+    const authKey = localStorage.getItem('authKey');
+    getAuthTokenDetails(authKey).then((user) => {
+      store.dispatch(signInSuccess(user, authKey));
+      history.push('/home');
+    }).catch(() => {
+      store.dispatch(signOut());
+      history.push('/');
+    });
   } else {
     renderApp();
-    console.log('should go to /');
     history.push('/');
   }
 };
 
 determinePathToRender(store.getState().auth);
-
-store.subscribe(() => {
-  determinePathToRender(store.getState().auth);
-});
