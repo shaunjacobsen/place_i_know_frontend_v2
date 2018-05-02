@@ -16,5 +16,8 @@
 }
 
 .button--link {
-  background-color: none;
+  background-color: transparent;
+  color: $blue;
+  font-size: $font-size-small;
+  padding: $s-size 0;
 }
