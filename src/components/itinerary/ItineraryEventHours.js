@@ -51,7 +51,7 @@ export class ItineraryEventHours extends React.Component {
         return weekdaySorter[a.day] > weekdaySorter[b.day];
       })
       .map(day => (
-        <Row>
+        <Row key={day.day}>
           <Col span={8}>{capitalizeFirstLetter(day.day)}</Col>
           <Col span={16}>{this.renderHours(day.hours)}</Col>
         </Row>
