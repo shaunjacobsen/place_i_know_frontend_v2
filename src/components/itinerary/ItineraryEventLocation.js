@@ -26,7 +26,8 @@ export class ItineraryEventLocation extends React.Component {
             Website
           </a>
         )}
-        {(this.props.event.place_phone && this.props.event.place_website) && <Divider type="vertical" />}
+        {this.props.event.place_phone &&
+          this.props.event.place_website && <Divider type="vertical" />}
         {this.props.event.place_phone}
       </div>
     );
