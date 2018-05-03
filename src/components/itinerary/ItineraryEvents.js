@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { List } from 'antd';
 import { ItineraryEvent } from './ItineraryEvent';
+import { ItineraryNote } from './ItineraryNote';
+import { ItineraryDirections } from './ItineraryDirections';
 
 export class ItineraryEvents extends React.Component {
   constructor(props) {
@@ -12,6 +14,10 @@ export class ItineraryEvents extends React.Component {
     switch (event.type) {
       case 'event':
         return <ItineraryEvent key={event.day_id} event={event} />;
+      case 'note':
+        return <ItineraryNote key={event.day_id} note={event.day_attributes} />;
+      case 'directions':
+        return <ItineraryDirections key={event.day_id} directions={event.day_attributes} />
       default:
         return event.type;
     }
@@ -20,7 +26,7 @@ export class ItineraryEvents extends React.Component {
   render() {
     return (
       <div>
-        <List itemLayout="vertical" size="large" loading={this.props.loading}>
+        <List itemLayout="vertical" size="large" split={false} loading={this.props.loading}>
           {this.props.events.map(event => this.renderEventComponent(event))}
         </List>
       </div>

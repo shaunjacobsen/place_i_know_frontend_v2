@@ -9,7 +9,7 @@ export const ItineraryEvent = props => {
     <List.Item key={props.event.event_id}>
       <div className="card">
         <div className="card__content">
-          <div className="card__image card__image--left">
+          <div className="card__image">
             <img src={props.event.event_image_url || props.event.place_image_url} />
           </div>
           <div className="card__content--text">

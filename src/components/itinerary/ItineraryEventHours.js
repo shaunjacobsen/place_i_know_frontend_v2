@@ -52,8 +52,8 @@ export class ItineraryEventHours extends React.Component {
       })
       .map(day => (
         <Row key={day.day}>
-          <Col span={8}>{capitalizeFirstLetter(day.day)}</Col>
-          <Col span={16}>{this.renderHours(day.hours)}</Col>
+          <Col span={6}>{capitalizeFirstLetter(day.day)}</Col>
+          <Col span={18}>{this.renderHours(day.hours)}</Col>
         </Row>
       ));
   }

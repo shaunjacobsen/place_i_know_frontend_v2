@@ -1,26 +1,52 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'antd';
 import moment from 'moment';
 import { getItineraryEventsForDate } from './../../actions/activeTrip';
 
 export class ItineraryDatesSelectorOption extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   handleSelectDate = () => {
     this.props.selectDate(this.props.date);
-  }
+  };
+
+  isActiveDate = () => {
+    return this.props.date === this.props.activeDate;
+  };
 
   render() {
+    let dateClassName = 'itinerary-dates-selector__date';
+    if (this.isActiveDate()) {
+      dateClassName += ' active';
+    }
+
     return (
-      <Button key={this.props.date} onClick={this.handleSelectDate}>
-        {moment(this.props.date).format('ddd D MMM')}
-      </Button>
+      <div className={dateClassName}>
+        <button
+          className="itinerary-dates-selector__button"
+          key={this.props.date}
+          onClick={this.handleSelectDate}
+        >
+          {moment(this.props.date).format('ddd')}
+          <br />
+          <span className="itinerary-dates-selector__date-day">
+            {moment(this.props.date).format('D')}
+          </span>
+          <br />
+          {moment(this.props.date).format('MMM')}
+        </button>
+      </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    activeDate: state.activeTrip.itinerary.activeDate,
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -28,4 +54,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(undefined, mapDispatchToProps)(ItineraryDatesSelectorOption);
+export default connect(mapStateToProps, mapDispatchToProps)(ItineraryDatesSelectorOption);
