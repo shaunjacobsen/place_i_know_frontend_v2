@@ -26,7 +26,7 @@ export class AttendeesList extends React.Component {
     });
     try {
       const attendees = await axios.get(
-        `${process.env.REACT_APP_API_URL}/trip/${this.props.tripId}/attendees`,
+        `${process.env.REACT_APP_API_URL}trip/${this.props.tripId}/attendees`,
         {
           headers: {
             'x-auth': this.props.authToken,
