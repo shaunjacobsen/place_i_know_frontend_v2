@@ -28,7 +28,7 @@ export const getTrips = () => {
     dispatch(getTripsStart());
     try {
       const authToken = getState().auth.token;
-      const request = await axios.get(`${process.env.REACT_APP_API_URL}trip`, {
+      const request = await axios.get(`${process.env.REACT_APP_API_URL}/trip`, {
         headers: { 'x-auth': authToken },
       });
       if (request.status === 200) {
