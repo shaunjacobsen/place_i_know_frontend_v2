@@ -23,7 +23,7 @@ export class SignInForm extends React.Component {
   };
 
   handleSubmit = e => {
-    e.preventDefault();
+    e && e.preventDefault();
 
     if (!this.state.email || !this.state.password) {
       this.setState(() => ({ error: 'Please enter your email and password.' }));
@@ -35,6 +35,15 @@ export class SignInForm extends React.Component {
       });
     }
   };
+
+  handleFakeLogin = () => {
+    this.setState(() => {
+      return {
+        email: process.env.REACT_APP_SAMPLE_EMAIL,
+        password: process.env.REACT_APP_SAMPLE_PASSWORD
+      }
+    }, this.handleSubmit(undefined));
+  }
 
   render() {
     return (
@@ -62,6 +71,9 @@ export class SignInForm extends React.Component {
           </FormItem>
           <Button type="primary" htmlType="submit" className="login-form-button">
             Sign in
+          </Button>
+          <Button type="dashed" onClick={this.handleFakeLogin}>
+            Development Sign In
           </Button>
         </Form>
       </Spin>
