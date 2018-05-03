@@ -39,6 +39,7 @@ export class Header extends React.Component {
                 </span>
               </div>
             </Link>
+            {process.env.REACT_APP_API_URL}
           </div>
           <UserInfo />
         </div>
