@@ -63,7 +63,7 @@ export const getItineraryEventsForDate = date => {
       const authToken = getState().auth.token;
       const itineraryId = getState().activeTrip.trip.itineraries[0].itinerary_id;
       const request = await axios.get(
-        `${process.env.REACT_APP_API_URL}itinerary/${itineraryId}/events?date=${date}`,
+        `${process.env.REACT_APP_API_URL}/itinerary/${itineraryId}/events?date=${date}`,
         {
           headers: { 'x-auth': authToken },
         }
