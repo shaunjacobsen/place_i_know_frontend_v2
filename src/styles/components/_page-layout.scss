@@ -6,13 +6,15 @@
 .layout-main {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0 auto;
-  max-width: 1000px;
-  padding: 70px 30px 30px 30px;
-  width: 1000px;
+  max-width: 1400px;
+  padding: 70px 30px 50px 30px;
+  position: relative;
+  width: 1100px;
 }
 
 .layout-container {
   padding: 50px 0;
+  width: 100%;
 }

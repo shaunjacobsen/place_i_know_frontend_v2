@@ -1,0 +1,44 @@
+.itinerary-dates-selector {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  padding: 0;
+  width: 100%;
+}
+
+.itinerary-dates-selector__date {
+  color: $grey;
+  flex: 1;
+  display: table-cell;
+  text-align: center;
+  transition: flex-grow 0.4s ease;
+}
+
+.itinerary-dates-selector__date.active {
+  background: $brand-teal;
+  border-radius: 4px;
+  flex-grow: 2;
+  > button {
+    color: #fff;
+  }
+}
+
+.itinerary-dates-selector__button {
+  @extend .button;
+  background: transparent;
+  border-radius: 0;
+  color: $grey;
+  font-size: $font-size-small;
+  line-height: 1.4;
+  width: 100%;
+  &:focus {
+    outline-color: darken($light-grey, 10%);
+  }
+}
+
+.itinerary-dates-selector__date-day {
+  font-size: $font-size-medium;
+  font-weight: 700;
+}

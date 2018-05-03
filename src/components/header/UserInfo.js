@@ -5,7 +5,7 @@ import { startSignOut } from './../../actions/auth';
 
 export const UserInfo = props => {
   const signOutButton = (
-    <a href="#" onClick={props.startSignOut} className="">
+    <a href="#" onClick={props.startSignOut}>
       Sign out
     </a>
   );
