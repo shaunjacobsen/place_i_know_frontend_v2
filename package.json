@@ -6,6 +6,7 @@
     "antd": "^3.4.4",
     "axios": "^0.18.0",
     "history": "^4.7.2",
+    "mapbox-gl": "^0.45.0-beta.1",
     "moment": "^2.22.1",
     "node-sass-chokidar": "^1.2.2",
     "normalize.css": "^8.0.0",

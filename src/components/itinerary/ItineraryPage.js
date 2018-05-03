@@ -4,6 +4,7 @@ import { Row, Col, Divider } from 'antd';
 import { getItineraryDates } from './../../actions/activeTrip';
 import ItineraryDatesSelector from './ItineraryDatesSelector';
 import ItineraryEvents from './ItineraryEvents';
+import ItineraryEventsMap from './ItineraryEventsMap';
 
 export class ItineraryPage extends React.Component {
   constructor(props) {
@@ -25,12 +26,12 @@ export class ItineraryPage extends React.Component {
           </div>
         )}
         {this.props.itinerary.activeDate && (
-          <Row>
+          <Row gutter={{ md: 24 }}>
             <Col xs={24} md={15}>
               <ItineraryEvents />
             </Col>
             <Col xs={24} md={9}>
-              ItineraryEventsMap
+              <ItineraryEventsMap />
             </Col>
           </Row>
         )}

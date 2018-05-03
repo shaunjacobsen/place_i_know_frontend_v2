@@ -42,3 +42,16 @@
   font-size: $font-size-medium;
   font-weight: 700;
 }
+
+.itinerary-map__container {
+  overflow: visible;
+}
+
+.itinerary-map__container--sticky {
+  position: sticky;
+  top: 0px;
+}
+
+.itinerary-map {
+  height: 85vh;
+}

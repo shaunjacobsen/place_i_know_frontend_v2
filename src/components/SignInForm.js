@@ -40,10 +40,10 @@ export class SignInForm extends React.Component {
     this.setState(() => {
       return {
         email: process.env.REACT_APP_SAMPLE_EMAIL,
-        password: process.env.REACT_APP_SAMPLE_PASSWORD
-      }
-    }, this.handleSubmit(undefined));
-  }
+        password: process.env.REACT_APP_SAMPLE_PASSWORD,
+      };
+    }, this.handleSubmit());
+  };
 
   render() {
     return (

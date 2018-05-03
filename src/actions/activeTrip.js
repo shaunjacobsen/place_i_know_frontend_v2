@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { store } from './../index';
+import { mapLoadPoints } from './map';
 
 export const resetActiveTrip = () => {
   return {
@@ -71,6 +72,7 @@ export const getItineraryEventsForDate = date => {
       if (request.status === 200) {
         const events = request.data;
         dispatch(getItineraryEventsForDateSuccess(date, events));
+        dispatch(mapLoadPoints());
       }
     } catch (e) {
       dispatch(getItineraryEventsForDateError('error'));
