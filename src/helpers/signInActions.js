@@ -8,7 +8,7 @@ export const getAuthTokenDetails = token => {
           'x-auth': token,
         },
       };
-      let response = await axios.get('//localhost:9292/token', config);
+      let response = await axios.get(`${process.env.REACT_APP_API_URL}/token`, config);
       resolve(response.data);
     } catch (e) {
       reject();
