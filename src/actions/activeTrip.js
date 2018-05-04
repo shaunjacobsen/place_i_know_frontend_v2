@@ -21,9 +21,12 @@ export const getItineraryDates = () => {
     try {
       const authToken = getState().auth.token;
       const itineraryId = getState().activeTrip.trip.itineraries[0].itinerary_id;
-      const request = await axios.get(`${process.env.REACT_APP_API_URL}/itinerary/${itineraryId}/dates`, {
-        headers: { 'x-auth': authToken },
-      });
+      const request = await axios.get(
+        `${process.env.REACT_APP_API_URL}/itinerary/${itineraryId}/dates`,
+        {
+          headers: { 'x-auth': authToken },
+        }
+      );
       if (request.status === 200) {
         const itinerary = request.data;
         dispatch(getItineraryDatesSuccess(itinerary));
@@ -72,6 +75,7 @@ export const getItineraryEventsForDate = date => {
       if (request.status === 200) {
         const events = request.data;
         dispatch(getItineraryEventsForDateSuccess(date, events));
+        // TODO: move mapLoadPoints() to another part of the app to prevent side effects
         dispatch(mapLoadPoints());
       }
     } catch (e) {
@@ -98,6 +102,89 @@ export const getItineraryEventsForDateSuccess = (date, events) => {
 export const getItineraryEventsForDateError = error => {
   return {
     type: 'GET_ITINERARY_EVENTS_FOR_DATE_ERROR',
+    error,
+  };
+};
+
+export const getItineraryAccommodations = () => {
+  return async (dispatch, getState) => {
+    dispatch(getItineraryAccommodationsStart());
+    try {
+      const authToken = getState().auth.token;
+      const tripId = getState().activeTrip.trip.trip_id;
+      const request = await axios.get(
+        `${process.env.REACT_APP_API_URL}/trip/${tripId}/accommodations`,
+        {
+          headers: { 'x-auth': authToken },
+        }
+      );
+      if (request.status === 200) {
+        const accommodations = request.data;
+        dispatch(getItineraryAccommodationsSuccess(accommodations));
+      }
+    } catch (e) {
+      dispatch(getItineraryAccommodationsError('error'));
+    }
+  };
+};
+
+export const getItineraryAccommodationsStart = () => {
+  return {
+    type: 'GET_ITINERARY_ACCOMMODATIONS_START',
+  };
+};
+
+export const getItineraryAccommodationsSuccess = accommodations => {
+  return {
+    type: 'GET_ITINERARY_ACCOMMODATIONS_SUCCESS',
+    accommodations,
+  };
+};
+
+export const getItineraryAccommodationsError = error => {
+  return {
+    type: 'GET_ITINERARY_ACCOMMODATIONS_ERROR',
+    error,
+  };
+};
+
+export const accommodationMarkSelected = id => {
+  return async (dispatch, getState) => {
+    dispatch(accommodationMarkSelectedStart());
+    try {
+      const authToken = getState().auth.token;
+      const request = await axios.post(
+        `${process.env.REACT_APP_API_URL}/accommodation/${id}/select`,
+        {},
+        {
+          headers: { 'x-auth': authToken },
+        }
+      );
+      if (request.status === 200) {
+        const data = request.data;
+        dispatch(accommodationMarkSelectedSuccess(data));
+      }
+    } catch (e) {
+      dispatch(accommodationMarkSelectedError());
+    }
+  };
+};
+
+export const accommodationMarkSelectedStart = () => {
+  return {
+    type: 'ACCOMMODATION_SELECT_START',
+  };
+};
+export const accommodationMarkSelectedSuccess = accommodations => {
+  return {
+    type: 'ACCOMMODATION_SELECT_SUCCESS',
+    accommodations,
+  };
+};
+
+export const accommodationMarkSelectedError = error => {
+  return {
+    type: 'ACCOMMODATION_SELECT_ERROR',
     error,
   };
 };

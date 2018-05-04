@@ -15,7 +15,13 @@ export default (state = initialTripState, action) => {
         trip: action.trip,
         itinerary: {},
         proposedItineraries: [],
-        bookings: {},
+        bookings: {
+          accommodations: {
+            loading: false,
+            error: null,
+            groups: [],
+          },
+        },
         statementCharges: [],
       };
     case 'GET_ITINERARY_DATES_START':
@@ -76,6 +82,78 @@ export default (state = initialTripState, action) => {
           ...state.itinerary,
           loading: false,
           error: action.error,
+        },
+      };
+    case 'GET_ITINERARY_ACCOMMODATIONS_START':
+      return {
+        ...state,
+        bookings: {
+          ...state.bookings,
+          accommodations: {
+            loading: true,
+            error: null,
+            groups: [],
+          },
+        },
+      };
+    case 'GET_ITINERARY_ACCOMMODATIONS_SUCCESS':
+      return {
+        ...state,
+        bookings: {
+          ...state.bookings,
+          accommodations: {
+            loading: false,
+            error: null,
+            groups: action.accommodations,
+          },
+        },
+      };
+    case 'GET_ITINERARY_ACCOMMODATIONS_ERROR':
+      return {
+        ...state,
+        bookings: {
+          ...state.bookings,
+          accommodations: {
+            loading: false,
+            error: action.error,
+            groups: [],
+          },
+        },
+      };
+    case 'ACCOMMODATION_SELECT_START':
+      return {
+        ...state,
+        bookings: {
+          ...state.bookings,
+          accommodations: {
+            loading: true,
+            error: null,
+            groups: [...state.bookings.accommodations.groups],
+          },
+        },
+      };
+    case 'ACCOMMODATION_SELECT_SUCCESS':
+      return {
+        ...state,
+        bookings: {
+          ...state.bookings,
+          accommodations: {
+            loading: false,
+            error: null,
+            groups: action.accommodations,
+          },
+        },
+      };
+    case 'ACCOMMODATION_SELECT_ERROR':
+      return {
+        ...state,
+        bookings: {
+          ...state.bookings,
+          accommodations: {
+            loading: false,
+            error: action.error,
+            groups: [...state.bookings.accommodations.groups],
+          },
         },
       };
     default:
