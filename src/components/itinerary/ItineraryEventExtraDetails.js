@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 import { ItineraryEventHours } from './ItineraryEventHours';
-import { ItineraryEventLocation } from './ItineraryEventLocation';
+import { PlaceLocationDetails } from './../places/PlaceLocationDetails';
 
 export class ItineraryEventExtraDetails extends React.Component {
   constructor(props) {
@@ -20,7 +20,7 @@ export class ItineraryEventExtraDetails extends React.Component {
         <Row>
           <Col xs={24} md={14}>
             <h3>Location & Contact</h3>
-            <ItineraryEventLocation event={this.props.event} />
+            <PlaceLocationDetails place={this.props.event} />
           </Col>
           <Col xs={24} md={10}>
             {!!this.props.event.place_hours && (
