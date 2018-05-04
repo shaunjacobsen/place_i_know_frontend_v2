@@ -4,6 +4,7 @@ import moment from 'moment';
 import { Row, Col, Card, Divider, Tabs, Icon, Badge, Modal, Button } from 'antd';
 import AttendeesList from './AttendeesList';
 import ItineraryPage from './../itinerary/ItineraryPage';
+import BookingsPage from './../bookings/BookingsPage';
 import { setActiveTrip } from './../../actions/activeTrip';
 const TabPane = Tabs.TabPane;
 
@@ -98,7 +99,7 @@ export class TripPage extends React.Component {
             }
             key="3"
           >
-            <AttendeesList attendees={this.props.trip.attendees} />
+            <BookingsPage />
           </TabPane>
           <TabPane
             tab={
