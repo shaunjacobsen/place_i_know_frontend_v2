@@ -44,10 +44,13 @@
 }
 
 .itinerary-map__container {
+  border: 1px solid darken($light-grey, 10%);
+  margin-top: 16px;
   overflow: visible;
 }
 
 .itinerary-map__container--sticky {
+  
   position: sticky;
   top: 0px;
 }

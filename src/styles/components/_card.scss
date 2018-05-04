@@ -16,6 +16,11 @@
   flex-direction: row;
 }
 
+.card__content--column {
+  @extend .card__content;
+  flex-direction: column;
+}
+
 .card__content--text {
   padding: 12px 24px;
 }
