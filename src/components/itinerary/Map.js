@@ -5,9 +5,15 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 export class Map extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      markers: [],
+      markersRendered: false,
+    };
   }
 
   componentDidUpdate() {
+    this.renderMarkers();
     this.fitMapToBounds();
   }
 
@@ -16,7 +22,7 @@ export class Map extends React.Component {
 
     this.map = new MapboxGl.Map({
       container: this.container,
-      style: 'mapbox://styles/transitized/cj8dtzyix8aow2rs7d63dlyq0',
+      style: 'mapbox://styles/transitized/cjgs3vt1700022slgxyc129vb',
     });
   }
 
@@ -29,14 +35,23 @@ export class Map extends React.Component {
       this.props.points.forEach(point => {
         bounds.extend(new MapboxGl.LngLat(point.lng, point.lat));
       });
-      this.map.fitBounds(bounds);
+      this.map.fitBounds(bounds, {
+        padding: 50,
+      });
     }
   }
 
+  clearMarkers() {
+    this.state.markers.forEach(marker => {
+      marker.remove();
+    });
+  }
+
   renderMarkers() {
-    if (this.props.map.points) {
-      this.props.map.points.forEach(marker => {
-        new MapboxGl.Marker().setLngLat([marker.lng, marker.lat]).addTo(this.container);
+    if (this.props.points) {
+      this.props.points.forEach(point => {
+        const marker = new MapboxGl.Marker().setLngLat([point.lng, point.lat]);
+        marker.addTo(this.map);
       });
     }
   }
