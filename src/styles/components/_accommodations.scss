@@ -1,5 +1,10 @@
 .accommodation-list__title {
   font-size: $font-size-medium;
+  small {
+    color: $grey;  
+    font-size: $font-size-small;
+    font-weight: 200;
+  }
 }
 
 .confirmation-status {
