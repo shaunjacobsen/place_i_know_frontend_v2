@@ -19,7 +19,9 @@ export class AccommodationGroupList extends React.Component {
 const mapStateToProps = state => {
   return {
     isLoading: state.activeTrip.bookings.accommodations.loading,
-    groups: state.activeTrip.bookings.accommodations.groups,
+    groups: state.activeTrip.bookings.accommodations.groups.sort((a, b) => {
+      return a.start_date > b.start_date;
+    }),
   };
 };
 

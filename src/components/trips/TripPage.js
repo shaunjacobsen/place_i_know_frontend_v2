@@ -104,12 +104,22 @@ export class TripPage extends React.Component {
           <TabPane
             tab={
               <span>
-                <Icon type="credit-card" /> Statement
+                <Icon type="file-pdf" /> Documents
               </span>
             }
             key="4"
           >
-            <AttendeesList attendees={this.props.trip.attendees} />
+            <div>DocumentsPage</div>
+          </TabPane>
+          <TabPane
+            tab={
+              <span>
+                <Icon type="credit-card" /> Statement
+              </span>
+            }
+            key="5"
+          >
+            <div>StatementPage</div>
           </TabPane>
         </Tabs>
       </div>

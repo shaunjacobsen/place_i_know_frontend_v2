@@ -90,6 +90,7 @@ export default (state = initialTripState, action) => {
         bookings: {
           ...state.bookings,
           accommodations: {
+            ...state.bookings.accommodations,
             loading: true,
             error: null,
             groups: [],
@@ -102,9 +103,14 @@ export default (state = initialTripState, action) => {
         bookings: {
           ...state.bookings,
           accommodations: {
+            ...state.bookings.accommodations,
             loading: false,
             error: null,
             groups: action.accommodations,
+            groupStatus: {
+              loading: false,
+              error: null,
+            }
           },
         },
       };
@@ -114,6 +120,7 @@ export default (state = initialTripState, action) => {
         bookings: {
           ...state.bookings,
           accommodations: {
+            ...state.bookings.accommodations,
             loading: false,
             error: action.error,
             groups: [],
@@ -126,8 +133,10 @@ export default (state = initialTripState, action) => {
         bookings: {
           ...state.bookings,
           accommodations: {
-            loading: true,
-            error: null,
+            groupStatus: {
+              loading: true,
+              error: null,
+            },
             groups: [...state.bookings.accommodations.groups],
           },
         },
@@ -138,8 +147,10 @@ export default (state = initialTripState, action) => {
         bookings: {
           ...state.bookings,
           accommodations: {
-            loading: false,
-            error: null,
+            groupStatus: {
+              loading: false,
+              error: null,
+            },
             groups: action.accommodations,
           },
         },
@@ -150,8 +161,10 @@ export default (state = initialTripState, action) => {
         bookings: {
           ...state.bookings,
           accommodations: {
-            loading: false,
-            error: action.error,
+            groupStatus: {
+              loading: false,
+              error: action.error,
+            },
             groups: [...state.bookings.accommodations.groups],
           },
         },

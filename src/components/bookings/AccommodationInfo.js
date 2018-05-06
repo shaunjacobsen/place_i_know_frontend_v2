@@ -59,11 +59,12 @@ export class AccommodationInfo extends React.Component {
           </Col>
           <Col xs={24} sm={12}>
             <h4>Cost</h4>
+            <span class="highlight">
             {Number(this.props.info.total).toLocaleString('en-US', {
               style: 'currency',
               currency: 'USD',
             })}{' '}
-            total <small style={{ fontStyle: 'italic' }}>incl. tax</small>
+            total</span> <small style={{ fontStyle: 'italic' }}>incl. tax</small>
             <br />
             {this.getNumberOfNights() > 1 && (
               <small>

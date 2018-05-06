@@ -12,7 +12,7 @@ export class BookingsPage extends React.Component {
           defaultActiveKey={['1']}
           style={{ backgroundColor: 'transparent' }}
         >
-          <Panel header={<h2>Accommodation</h2>} key="1">
+          <Panel header={<div className="bookings__header">Accommodation</div>} key="1">
             <Alert
               message="Ready to book?"
               description="Once you've chosen a hotel in each destination, simply click on the checkmark. Your travel planner will place the booking and confirm as soon as possible."
@@ -23,10 +23,10 @@ export class BookingsPage extends React.Component {
             />
             <AccommodationGroupList />
           </Panel>
-          <Panel header={<h2>Flights</h2>} key="2">
+          <Panel header={<div className="bookings__header">Flights</div>} key="2">
             <div />
           </Panel>
-          <Panel header={<h2>Train/Bus</h2>} key="3">
+          <Panel header={<div className="bookings__header">Train/Bus</div>} key="3">
             <div />
           </Panel>
         </Collapse>

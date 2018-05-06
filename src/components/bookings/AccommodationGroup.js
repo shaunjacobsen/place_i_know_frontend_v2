@@ -1,6 +1,8 @@
 import React from 'react';
 import { Row, Col, Icon } from 'antd';
+import moment from 'moment';
 import Accommodation from './Accommodation';
+import {DateRange} from './../DateRange';
 import { showAccommodationsForGroupBasedOnConfirmationStatus } from './../../filters/accommodation';
 
 export class AccommodationGroup extends React.Component {
@@ -13,7 +15,7 @@ export class AccommodationGroup extends React.Component {
         </span>
       );
     } else {
-      return <span>{this.props.group.title} Options</span>;
+      return <span>{this.props.group.title} Options&nbsp;<small> for <DateRange start={this.props.group.start_date} end={this.props.group.end_date} /></small></span>;
     }
   }
 
