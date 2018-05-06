@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Alert, Icon, Divider, Button, Rate } from 'antd';
 import moment from 'moment';
 import { AccommodationInfo } from './AccommodationInfo';
+import { DateRange } from './../DateRange';
 import { accommodationMarkSelected } from './../../actions/activeTrip';
 
 export class Accommodation extends React.Component {
@@ -28,31 +29,13 @@ export class Accommodation extends React.Component {
         <div className="confirmation-status confirmation-status--proposed">
           <Button
             type="primary"
+            disabled={this.props.isUpdating}
             loading={this.props.isUpdating}
             onClick={this.handleAccommodationSelection}
           >
-            Select this hotel
+            {this.props.isUpdating ? 'Updating...' : 'Select this hotel'}
           </Button>
         </div>
-      );
-    }
-  }
-
-  displayCheckInAndCheckOut() {
-    const checkIn = moment(this.props.info.check_in);
-    const checkOut = moment(this.props.info.check_out);
-    const datesAreInSameMonth = checkIn.format('M') === checkOut.format('M');
-    if (datesAreInSameMonth) {
-      return (
-        <span>
-          {checkIn.format('D')} &mdash; {checkOut.format('D MMMM')}
-        </span>
-      );
-    } else {
-      return (
-        <span>
-          {checkIn.format('D MMMM')} &mdash; {checkOut.format('D MMMM')}
-        </span>
       );
     }
   }
@@ -74,7 +57,7 @@ export class Accommodation extends React.Component {
               defaultValue={this.props.info.star_rating}
               style={{ color: '#85e1c8' }}
             /><br />
-            {this.displayCheckInAndCheckOut()}
+            <DateRange start={this.props.info.check_in} end={this.props.info.check_out} />
             <Divider style={{ margin: '12px 0' }} />
             <AccommodationInfo info={this.props.info} />
             <Divider style={{ margin: '12px 0' }} />
@@ -88,7 +71,7 @@ export class Accommodation extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isUpdating: state.activeTrip.bookings.accommodations.loading,
+    isUpdating: state.activeTrip.bookings.accommodations.groupStatus.loading,
   };
 };
 
