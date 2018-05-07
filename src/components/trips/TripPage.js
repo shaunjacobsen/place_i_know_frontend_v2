@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { Row, Col, Card, Divider, Tabs, Icon, Badge, Modal, Button } from 'antd';
+import { Row, Col, Card, Divider, Tabs, Badge, Modal, Button, Spin, Icon } from 'antd';
+import { TripHeader } from './TripHeader';
+import { LoadingIndicator } from './../LoadingIndicator';
 import AttendeesList from './AttendeesList';
 import ItineraryPage from './../itinerary/ItineraryPage';
 import BookingsPage from './../bookings/BookingsPage';
 import { setActiveTrip } from './../../actions/activeTrip';
+import { getActiveTripAssociatedData } from './../../actions/activeTrip';
 const TabPane = Tabs.TabPane;
 
 const attendeeInformation = () =>
@@ -32,24 +35,29 @@ export class TripPage extends React.Component {
 
   componentDidMount() {
     this.props.setActiveTrip(this.props.trip);
-  }
-
-  renderTripLength() {
-    const lengthInNights = moment(this.props.trip.end_date).diff(
-      moment(this.props.trip.start_date),
-      'days'
-    );
-    return lengthInNights > 1 ? `${lengthInNights} nights` : `${lengthInNights} night`;
+    this.props.getActiveTripAssociatedData(this.props.trip.trip_id);
   }
 
   render() {
+    if (this.props.activeTrip.loading === undefined || this.props.activeTrip.loading) {
+      return (
+        <div className="content-area">
+          <TripHeader
+            tripTitle={this.props.trip.title}
+            startDate={this.props.trip.start_date}
+            endDate={this.props.trip.end_date}
+          />
+          <LoadingIndicator size="large" title="Loading Trip" />
+        </div>
+      );
+    }
     return (
       <div className="content-area">
-        <h1>{this.props.trip.title}</h1>
-        <p>
-          {moment(this.props.trip.start_date).format('ddd D MMMM YYYY')} &mdash;{' '}
-          {moment(this.props.trip.end_date).format('ddd D MMMM YYYY')} ({this.renderTripLength()})
-        </p>
+        <TripHeader
+          tripTitle={this.props.trip.title}
+          startDate={this.props.trip.start_date}
+          endDate={this.props.trip.end_date}
+        />
         <Tabs>
           <TabPane
             tab={
@@ -132,12 +140,14 @@ const mapStateToProps = (state, props) => {
     trip: state.trips.tripsList.find(trip => {
       return trip.trip_id == props.match.params.id;
     }),
+    activeTrip: state.activeTrip === undefined ? {} : state.activeTrip,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     setActiveTrip: trip => dispatch(setActiveTrip(trip)),
+    getActiveTripAssociatedData: tripId => dispatch(getActiveTripAssociatedData(tripId)),
   };
 };
 

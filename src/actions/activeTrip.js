@@ -1,6 +1,8 @@
 import axios from 'axios';
-import { store } from './../index';
 import { mapLoadPoints } from './map';
+import { getPlaces } from './places';
+import { getItinerary } from './itinerary';
+import { getItineraryDays } from './itineraryDays';
 
 export const resetActiveTrip = () => {
   return {
@@ -15,47 +17,33 @@ export const setActiveTrip = trip => {
   };
 };
 
-export const getItineraryDates = () => {
-  return async (dispatch, getState) => {
-    dispatch(getItineraryDatesStart());
-    try {
-      const authToken = getState().auth.token;
-      const itineraryId = getState().activeTrip.trip.itineraries[0].itinerary_id;
-      const request = await axios.get(
-        `${process.env.REACT_APP_API_URL}/itinerary/${itineraryId}/dates`,
-        {
-          headers: { 'x-auth': authToken },
-        }
-      );
-      if (request.status === 200) {
-        const itinerary = request.data;
-        dispatch(getItineraryDatesSuccess(itinerary));
-      }
-    } catch (e) {
-      dispatch(getItineraryDatesError('error'));
-    }
+export const getActiveTripAssociatedData = tripId => {
+  return dispatch => {
+    dispatch(getActiveTripAssociatedDataStart());
+    dispatch(getItinerary(tripId)).then(response => {
+      Promise.all([
+        dispatch(getItineraryDays(response.itinerary.itinerary_id)),
+        dispatch(getPlaces(tripId)),
+      ]).then(() => dispatch(getActiveTripAssociatedDataSuccess()));
+    });
   };
 };
 
-export const getItineraryDatesStart = () => {
+export const getActiveTripAssociatedDataStart = () => {
   return {
-    type: 'GET_ITINERARY_DATES_START',
+    type: 'GET_ACTIVE_TRIP_ASSOCIATED_DATA_START',
   };
 };
 
-export const getItineraryDatesSuccess = itineraryDates => {
+export const getActiveTripAssociatedDataSuccess = () => {
   return {
-    type: 'GET_ITINERARY_DATES_SUCCESS',
-    itineraryDates: itineraryDates.reduce((result, item, index, array) => {
-      result[item] = [];
-      return result;
-    }, {}),
+    type: 'GET_ACTIVE_TRIP_ASSOCIATED_DATA_SUCCESS',
   };
 };
 
-export const getItineraryDatesError = error => {
+export const getActiveTripAssociatedDataError = error => {
   return {
-    type: 'GET_ITINERARY_DATES_ERROR',
+    type: 'GET_ACTIVE_TRIP_ASSOCIATED_DATA_ERROR',
     error,
   };
 };

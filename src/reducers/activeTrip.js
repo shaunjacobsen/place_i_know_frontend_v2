@@ -1,28 +1,76 @@
+import itineraryReducer from './itinerary';
+import itineraryDaysReducer from './itineraryDays';
+import placesReducer from './places';
 const initialTripState = [];
 
 export default (state = initialTripState, action) => {
   switch (action.type) {
     case 'RESET_ACTIVE_TRIP':
-      return {
-        trip: {},
-        itinerary: {},
-        proposedItineraries: [],
-        bookings: {},
-        statementCharges: [],
-      };
+      return {};
     case 'SET_ACTIVE_TRIP':
+      return action.trip;
+    case 'GET_ACTIVE_TRIP_ASSOCIATED_DATA_START':
       return {
-        trip: action.trip,
-        itinerary: {},
-        proposedItineraries: [],
-        bookings: {
-          accommodations: {
-            loading: false,
-            error: null,
-            groups: [],
-          },
-        },
-        statementCharges: [],
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case 'GET_ACTIVE_TRIP_ASSOCIATED_DATA_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        error: null,
+      };
+    case 'GET_ACTIVE_TRIP_ASSOCIATED_DATA_ERROR':
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+      };
+    case 'GET_ITINERARY_START':
+      return {
+        ...state,
+        itinerary: itineraryReducer(state.itinerary, action),
+      };
+    case 'GET_ITINERARY_ERROR':
+      return {
+        ...state,
+        itinerary: itineraryReducer(state.itinerary, action),
+      };
+    case 'GET_ITINERARY_SUCCESS':
+      return {
+        ...state,
+        itinerary: itineraryReducer(state.itinerary, action),
+      };
+    case 'GET_ITINERARY_DAYS_START':
+      return {
+        ...state,
+        itineraryDays: itineraryDaysReducer(state.itineraryDays, action),
+      };
+    case 'GET_ITINERARY_DAYS_ERROR':
+      return {
+        ...state,
+        itineraryDays: itineraryDaysReducer(state.itineraryDays, action),
+      };
+    case 'GET_ITINERARY_DAYS_SUCCESS':
+      return {
+        ...state,
+        itineraryDays: itineraryDaysReducer(state.itineraryDays, action),
+      };
+    case 'GET_PLACES_START':
+      return {
+        ...state,
+        places: placesReducer(state.places, action),
+      };
+    case 'GET_PLACES_ERROR':
+      return {
+        ...state,
+        places: placesReducer(state.places, action),
+      };
+    case 'GET_PLACES_SUCCESS':
+      return {
+        ...state,
+        places: placesReducer(state.places, action),
       };
     case 'GET_ITINERARY_DATES_START':
       return {
@@ -110,7 +158,7 @@ export default (state = initialTripState, action) => {
             groupStatus: {
               loading: false,
               error: null,
-            }
+            },
           },
         },
       };
