@@ -1,0 +1,15 @@
+.loading-indicator {
+  color: darken($light-grey, 20%);
+  font-size: $font-size-medium;
+  font-weight: 200;
+  height: 100vh;
+  text-align: center;
+  width: 100%;
+  p {
+    margin-top: 24px;
+  }
+  .ant-spin-dot {
+    height: 48px;
+    width: 48px;
+  }
+}
