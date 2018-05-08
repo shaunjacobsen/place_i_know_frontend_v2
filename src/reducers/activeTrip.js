@@ -1,6 +1,9 @@
 import itineraryReducer from './itinerary';
 import itineraryDaysReducer from './itineraryDays';
 import placesReducer from './places';
+import eventsReducer from './events';
+import accommodationGroupsReducer from './accommodationGroups';
+import accommodationsReducer from './accommodations';
 const initialTripState = [];
 
 export default (state = initialTripState, action) => {
@@ -72,108 +75,59 @@ export default (state = initialTripState, action) => {
         ...state,
         places: placesReducer(state.places, action),
       };
-    case 'GET_ITINERARY_DATES_START':
+    case 'GET_EVENTS_START':
       return {
         ...state,
-        itinerary: {
-          loading: true,
-          error: null,
-          dates: {},
-        },
+        events: eventsReducer(state.events, action),
       };
-    case 'GET_ITINERARY_DATES_SUCCESS':
+    case 'GET_EVENTS_ERROR':
       return {
         ...state,
-        itinerary: {
-          loading: false,
-          error: null,
-          dates: action.itineraryDates,
-        },
+        events: eventsReducer(state.events, action),
       };
-    case 'GET_ITINERARY_DATES_ERROR':
+    case 'GET_EVENTS_SUCCESS':
       return {
         ...state,
-        itinerary: {
-          loading: false,
-          error: action.error,
-          dates: {},
-        },
+        events: eventsReducer(state.events, action),
       };
-    case 'GET_ITINERARY_EVENTS_FOR_DATE_START':
+    case 'GET_ACCOMMODATION_GROUPS_START':
       return {
         ...state,
-        itinerary: {
-          ...state.itinerary,
-          loading: true,
-          error: null,
-          activeDate: action.date,
-        },
+        accommodationGroups: accommodationGroupsReducer(
+          state.accommodationGroups,
+          action
+        ),
       };
-    case 'GET_ITINERARY_EVENTS_FOR_DATE_SUCCESS':
+    case 'GET_ACCOMMODATION_GROUPS_ERROR':
       return {
         ...state,
-        itinerary: {
-          ...state.itinerary,
-          activeDate: action.date,
-          loading: false,
-          error: null,
-          dates: {
-            ...state.itinerary.dates,
-            [action.date]: action.events,
-          },
-        },
+        accommodationGroups: accommodationGroupsReducer(
+          state.accommodationGroups,
+          action
+        ),
       };
-    case 'GET_ITINERARY_EVENTS_FOR_DATE_ERROR':
+    case 'GET_ACCOMMODATION_GROUPS_SUCCESS':
       return {
         ...state,
-        itinerary: {
-          ...state.itinerary,
-          loading: false,
-          error: action.error,
-        },
+        accommodationGroups: accommodationGroupsReducer(
+          state.accommodationGroups,
+          action
+        ),
       };
-    case 'GET_ITINERARY_ACCOMMODATIONS_START':
+    case 'GET_ACCOMMODATIONS_START':
       return {
         ...state,
-        bookings: {
-          ...state.bookings,
-          accommodations: {
-            ...state.bookings.accommodations,
-            loading: true,
-            error: null,
-            groups: [],
-          },
-        },
+        accommodations: accommodationsReducer(state.accommodations, action),
       };
-    case 'GET_ITINERARY_ACCOMMODATIONS_SUCCESS':
+    case 'GET_ACCOMMODATIONS_ERROR':
       return {
         ...state,
-        bookings: {
-          ...state.bookings,
-          accommodations: {
-            ...state.bookings.accommodations,
-            loading: false,
-            error: null,
-            groups: action.accommodations,
-            groupStatus: {
-              loading: false,
-              error: null,
-            },
-          },
-        },
+        accommodations: accommodationsReducer(state.accommodations, action),
       };
-    case 'GET_ITINERARY_ACCOMMODATIONS_ERROR':
+    case 'GET_ACCOMMODATIONS_SUCCESS':
       return {
         ...state,
-        bookings: {
-          ...state.bookings,
-          accommodations: {
-            ...state.bookings.accommodations,
-            loading: false,
-            error: action.error,
-            groups: [],
-          },
-        },
+        accommodations: accommodationsReducer(state.accommodations, action),
       };
     case 'ACCOMMODATION_SELECT_START':
       return {

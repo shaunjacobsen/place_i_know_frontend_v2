@@ -3,6 +3,7 @@ import { mapLoadPoints } from './map';
 import { getPlaces } from './places';
 import { getItinerary } from './itinerary';
 import { getItineraryDays } from './itineraryDays';
+import { getEvents } from './events';
 
 export const resetActiveTrip = () => {
   return {
@@ -23,6 +24,7 @@ export const getActiveTripAssociatedData = tripId => {
     dispatch(getItinerary(tripId)).then(response => {
       Promise.all([
         dispatch(getItineraryDays(response.itinerary.itinerary_id)),
+        dispatch(getEvents(response.itinerary.itinerary_id)),
         dispatch(getPlaces(tripId)),
       ]).then(() => dispatch(getActiveTripAssociatedDataSuccess()));
     });
