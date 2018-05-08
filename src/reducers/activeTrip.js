@@ -45,6 +45,11 @@ export default (state = initialTripState, action) => {
         ...state,
         itinerary: itineraryReducer(state.itinerary, action),
       };
+    case 'SET_ITINERARY_ACTIVE_DATE':
+      return {
+        ...state,
+        itinerary: itineraryReducer(state.itinerary, action),
+      };
     case 'GET_ITINERARY_DAYS_START':
       return {
         ...state,
@@ -128,48 +133,6 @@ export default (state = initialTripState, action) => {
       return {
         ...state,
         accommodations: accommodationsReducer(state.accommodations, action),
-      };
-    case 'ACCOMMODATION_SELECT_START':
-      return {
-        ...state,
-        bookings: {
-          ...state.bookings,
-          accommodations: {
-            groupStatus: {
-              loading: true,
-              error: null,
-            },
-            groups: [...state.bookings.accommodations.groups],
-          },
-        },
-      };
-    case 'ACCOMMODATION_SELECT_SUCCESS':
-      return {
-        ...state,
-        bookings: {
-          ...state.bookings,
-          accommodations: {
-            groupStatus: {
-              loading: false,
-              error: null,
-            },
-            groups: action.accommodations,
-          },
-        },
-      };
-    case 'ACCOMMODATION_SELECT_ERROR':
-      return {
-        ...state,
-        bookings: {
-          ...state.bookings,
-          accommodations: {
-            groupStatus: {
-              loading: false,
-              error: action.error,
-            },
-            groups: [...state.bookings.accommodations.groups],
-          },
-        },
       };
     default:
       return state;

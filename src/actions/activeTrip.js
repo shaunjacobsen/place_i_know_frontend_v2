@@ -69,7 +69,7 @@ export const getItineraryEventsForDate = date => {
         dispatch(mapLoadPoints());
       }
     } catch (e) {
-      dispatch(getItineraryEventsForDateError('error'));
+      dispatch(getItineraryEventsForDateError(e));
     }
   };
 };
@@ -134,47 +134,6 @@ export const getItineraryAccommodationsSuccess = accommodations => {
 export const getItineraryAccommodationsError = error => {
   return {
     type: 'GET_ITINERARY_ACCOMMODATIONS_ERROR',
-    error,
-  };
-};
-
-export const accommodationMarkSelected = id => {
-  return async (dispatch, getState) => {
-    dispatch(accommodationMarkSelectedStart());
-    try {
-      const authToken = getState().auth.token;
-      const request = await axios.post(
-        `${process.env.REACT_APP_API_URL}/accommodation/${id}/select`,
-        {},
-        {
-          headers: { 'x-auth': authToken },
-        }
-      );
-      if (request.status === 200) {
-        const data = request.data;
-        dispatch(accommodationMarkSelectedSuccess(data));
-      }
-    } catch (e) {
-      dispatch(accommodationMarkSelectedError());
-    }
-  };
-};
-
-export const accommodationMarkSelectedStart = () => {
-  return {
-    type: 'ACCOMMODATION_SELECT_START',
-  };
-};
-export const accommodationMarkSelectedSuccess = accommodations => {
-  return {
-    type: 'ACCOMMODATION_SELECT_SUCCESS',
-    accommodations,
-  };
-};
-
-export const accommodationMarkSelectedError = error => {
-  return {
-    type: 'ACCOMMODATION_SELECT_ERROR',
     error,
   };
 };

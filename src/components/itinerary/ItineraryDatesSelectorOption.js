@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { getItineraryEventsForDate } from './../../actions/activeTrip';
+import { setItineraryActiveDate } from './../../actions/itinerary';
 
 export class ItineraryDatesSelectorOption extends React.Component {
   constructor(props) {
@@ -50,7 +50,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    selectDate: date => dispatch(getItineraryEventsForDate(date)),
+    selectDate: date => dispatch(setItineraryActiveDate(date)),
   };
 };
 
