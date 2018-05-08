@@ -41,8 +41,19 @@
   }
 }
 
+.card__basic-information {
+  margin-bottom: 12px;
+  div {
+    margin-bottom: 6px;
+  }
+}
+
 .card__basic-information--purple {
   color: #8a2be2;
+}
+
+.card__basic-information--red {
+  color: #F62B40;
 }
 
 .card__actions {
