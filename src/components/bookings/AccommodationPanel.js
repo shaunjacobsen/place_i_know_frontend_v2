@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Spin, Icon } from 'antd';
 import { getActiveTripAccommodationsData } from './../../actions/accommodations';
-import { AccommodationGroupList } from './AccommodationGroupList';
+import AccommodationGroupList from './AccommodationGroupList';
 
 export class AccommodationPanel extends React.Component {
   componentDidMount() {
@@ -16,7 +16,7 @@ export class AccommodationPanel extends React.Component {
     ) {
       return (
         <div>
-          <Spin indicator={<Icon type="loading" spin />} /> Loading...
+          <Spin indicator={<Icon type="loading" spin />} /> Loading hotel groups...
         </div>
       );
     }

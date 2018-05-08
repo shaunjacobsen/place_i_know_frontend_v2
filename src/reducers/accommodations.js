@@ -5,12 +5,14 @@ export default (state = initialState, action) => {
     case 'GET_ACCOMMODATIONS_START':
       return {
         ...state,
+        loadingType: action.loadingType,
         loading: true,
         error: null,
       };
     case 'GET_ACCOMMODATIONS_SUCCESS':
       return {
         ...state,
+        loadingType: null,
         loading: false,
         error: null,
         data: action.accommodations,
@@ -18,6 +20,7 @@ export default (state = initialState, action) => {
     case 'GET_ACCOMMODATIONS_ERROR':
       return {
         ...state,
+        loadingType: null,
         loading: false,
         error: action.error,
       };

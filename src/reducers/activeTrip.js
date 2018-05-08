@@ -134,6 +134,30 @@ export default (state = initialTripState, action) => {
         ...state,
         accommodations: accommodationsReducer(state.accommodations, action),
       };
+    case 'ACCOMMODATION_SELECT_START':
+      return {
+        ...state,
+        accommodationGroups: accommodationGroupsReducer(
+          state.accommodationGroups,
+          action
+        ),
+      };
+    case 'ACCOMMODATION_SELECT_ERROR':
+      return {
+        ...state,
+        accommodationGroups: accommodationGroupsReducer(
+          state.accommodationGroups,
+          action
+        ),
+      };
+    case 'ACCOMMODATION_SELECT_SUCCESS':
+      return {
+        ...state,
+        accommodationGroups: accommodationGroupsReducer(
+          state.accommodationGroups,
+          action
+        ),
+      };
     default:
       return state;
   }

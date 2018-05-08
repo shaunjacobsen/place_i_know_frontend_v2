@@ -34,11 +34,12 @@ export class AccommodationGroup extends React.Component {
   render() {
     if (
       this.props.trip.accommodations === undefined ||
-      this.props.trip.accommodations.loading
+      (this.props.trip.accommodations.loading &&
+        this.props.trip.accommodations.loadingType === 'initial')
     ) {
       return (
         <div>
-          <Spin indicator={<Icon type="loading" spin />} /> Loading...
+          <Spin indicator={<Icon type="loading" spin />} /> Loading hotels...
         </div>
       );
     }
@@ -46,7 +47,7 @@ export class AccommodationGroup extends React.Component {
       <div>
         <h3 className="accommodation-list__title">{this.renderTitle()}</h3>
         <Row gutter={6}>
-          {this.props.group.accommodation.map(accommodationId => {
+          {this.props.group.accommodation.sort((a, b) => a - b).map(accommodationId => {
             return (
               <Col
                 key={accommodationId}

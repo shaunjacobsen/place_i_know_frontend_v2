@@ -19,10 +19,17 @@
 .card__content--column {
   @extend .card__content;
   flex-direction: column;
+  .card__image {
+    img {
+      height: 175px;
+      width: 100%;
+    }
+  }
 }
 
 .card__content--text {
   padding: 12px 24px;
+  width: 100%;
 }
 
 .card__title {
@@ -32,7 +39,6 @@
 .card__image {
   display: flex;
   align-content: stretch;
-  flex: 1;
   img {
     height: 100%;
     width: 175px;

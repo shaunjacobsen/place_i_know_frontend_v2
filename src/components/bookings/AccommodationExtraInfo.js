@@ -30,9 +30,8 @@ export const AccommodationExtraInfo = props => {
           ) : (
             ''
           )}
-          <h3>Location & Contact</h3>
           <PlaceLocationDetails
-            place={this.props.place}
+            place={props.place}
             showHours={false}
             showMap={true}
             mapInfo={mapInfo}

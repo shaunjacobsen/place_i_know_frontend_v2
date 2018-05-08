@@ -21,6 +21,21 @@ export default (state = initialState, action) => {
         loading: false,
         error: action.error,
       };
+    case 'ACCOMMODATION_SELECT_START':
+      return {
+        ...state,
+        error: null,
+      };
+    case 'ACCOMMODATION_SELECT_SUCCESS':
+      return {
+        ...state,
+        data: action.accommodationGroups,
+      };
+    case 'ACCOMMODATION_SELECT_ERROR':
+      return {
+        ...state,
+        error: action.error,
+      };
     default:
       return state;
   }
