@@ -33,7 +33,7 @@ export class ItineraryEventDetails extends React.Component {
   render() {
     return (
       <div>
-        <div className="card__notes">{this.props.event.event_notes}</div>
+        <div className="card__notes">{this.props.event.notes}</div>
         <ItineraryEventExtraDetails
           visible={this.state.showMoreDetails}
           event={this.props.event}

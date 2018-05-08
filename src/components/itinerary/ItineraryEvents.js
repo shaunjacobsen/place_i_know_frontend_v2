@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { List } from 'antd';
-import { ItineraryEvent } from './ItineraryEvent';
+import ItineraryEvent from './ItineraryEvent';
 import { ItineraryNote } from './ItineraryNote';
 import { ItineraryDirections } from './ItineraryDirections';
+import { showEventsForDate } from './../../selectors/itinerary';
 
 export class ItineraryEvents extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ export class ItineraryEvents extends React.Component {
   renderEventComponent(event) {
     switch (event.type) {
       case 'event':
-        return <ItineraryEvent key={event.day_id} event={event} />;
+        return <ItineraryEvent key={event.day_id} eventId={event.event_id} />;
       case 'note':
         return <ItineraryNote key={event.day_id} note={event.day_attributes} />;
       case 'directions':
@@ -38,8 +39,7 @@ const mapStateToProps = state => {
   const activeDate = state.activeTrip.itinerary.activeDate;
   return {
     activeDate,
-    events: activeDate ? state.activeTrip.itinerary.dates[activeDate] : [],
-    loading: state.activeTrip.itinerary.loading,
+    events: showEventsForDate(activeDate, state.activeTrip.itineraryDays.data)
   };
 };
 

@@ -1,20 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import { Spin, Icon } from 'antd';
 import { getItineraryEventsForDate } from './../../actions/activeTrip';
 import ItineraryDatesSelectorOption from './ItineraryDatesSelectorOption';
 
 export class ItineraryDatesSelector extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="itinerary-dates-selector">
-        {this.props.dates.map(date => (
-          <ItineraryDatesSelectorOption key={date} date={date} />
-        ))}
+        {typeof this.props.range !== 'undefined' &&
+          this.props.range.map(date => (
+            <ItineraryDatesSelectorOption key={date} date={date} />
+          ))}
       </div>
     );
   }

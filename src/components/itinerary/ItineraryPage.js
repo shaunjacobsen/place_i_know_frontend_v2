@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Row, Col, Divider } from 'antd';
-import { getItineraryDates } from './../../actions/activeTrip';
+import { Row, Col, Divider, Spin, Icon } from 'antd';
+import { getItineraryDays, getItineraryDateRange } from './../../actions/itineraryDays';
+import { getArrayOfDatesFromItineraryDays } from './../../helpers/itineraryHelpers';
 import ItineraryDatesSelector from './ItineraryDatesSelector';
 import ItineraryEvents from './ItineraryEvents';
 import ItineraryEventsMap from './ItineraryEventsMap';
@@ -12,15 +13,19 @@ export class ItineraryPage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getItineraryDates();
+    this.props.getItineraryDays(this.props.itinerary.data.itinerary_id);
+  }
+
+  getDateRange() {
+    return getArrayOfDatesFromItineraryDays(this.props.activeTrip.itineraryDays.data);
   }
 
   render() {
     return (
       <div>
-        <ItineraryDatesSelector dates={Object.keys(this.props.itinerary.dates || {})} />
+        <ItineraryDatesSelector range={this.getDateRange()} />
         <Divider />
-        {!this.props.itinerary.activeDate && (
+        {this.props.itinerary.activeDate === undefined && (
           <div>
             <h2 style={{ textAlign: 'center' }}>Please select a date to get started.</h2>
           </div>
@@ -42,13 +47,14 @@ export class ItineraryPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    activeTrip: state.activeTrip,
     itinerary: state.activeTrip.itinerary,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getItineraryDates: () => dispatch(getItineraryDates()),
+    getItineraryDays: itineraryId => dispatch(getItineraryDays(itineraryId)),
   };
 };
 

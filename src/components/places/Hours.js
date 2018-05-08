@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import moment from 'moment';
 import { Row, Col } from 'antd';
+import { selectPlaceById } from './../../selectors/place';
 import { capitalizeFirstLetter } from './../../helpers/stringHelpers';
 
 const weekdaySorter = {
@@ -13,7 +15,7 @@ const weekdaySorter = {
   sat: 6,
 };
 
-export class ItineraryEventHours extends React.Component {
+export class Hours extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -27,7 +29,7 @@ export class ItineraryEventHours extends React.Component {
   }
 
   toTwelveHourTime(time) {
-    return moment(time, 'HH:mm').format('hh:mm a');
+    return moment(time, 'HH:mm').format('h:mm a');
   }
 
   renderHours(hours) {
@@ -43,7 +45,6 @@ export class ItineraryEventHours extends React.Component {
   }
 
   renderHoursList() {
-    const dateOfEvent = moment(this.props.eventDate).weekday();
     const hours = this.props.hours;
     const days = this.convertHoursObjectToArray(hours);
     return days

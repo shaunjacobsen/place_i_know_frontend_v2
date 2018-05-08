@@ -23,7 +23,7 @@ export class ItineraryDirections extends React.Component {
   render() {
     return (
       <List.Item>
-        <div>
+        <div className="itinerary-directions">
           {this.renderDirectionMode()} for about{' '}
           {this.props.directions.estimated_duration} minutes
         </div>

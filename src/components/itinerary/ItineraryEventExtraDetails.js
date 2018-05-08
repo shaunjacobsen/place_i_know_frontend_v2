@@ -1,7 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'antd';
-import { ItineraryEventHours } from './ItineraryEventHours';
-import { PlaceLocationDetails } from './../places/PlaceLocationDetails';
+import PlaceLocationDetails from './../places/PlaceLocationDetails';
 
 export class ItineraryEventExtraDetails extends React.Component {
   constructor(props) {
@@ -17,23 +15,11 @@ export class ItineraryEventExtraDetails extends React.Component {
             : 'card__additional-information--hidden'
         }
       >
-        <Row>
-          <Col xs={24} md={14}>
-            <h3>Location & Contact</h3>
-            <PlaceLocationDetails place={this.props.event} />
-          </Col>
-          <Col xs={24} md={10}>
-            {!!this.props.event.place_hours && (
-              <div>
-                <h3>Hours</h3>
-                <ItineraryEventHours
-                  hours={this.props.event.place_hours}
-                  eventDate={this.props.event.date}
-                />
-              </div>
-            )}
-          </Col>
-        </Row>
+        <PlaceLocationDetails
+          placeId={this.props.event.places[0]}
+          showHours={true}
+          showMap={false}
+        />
       </div>
     );
   }
