@@ -82,6 +82,7 @@ export class AccommodationInfo extends React.Component {
         {this.renderDetailsLink()}
         <AccommodationExtraInfo
           info={this.props.info}
+          place={this.props.place}
           visible={this.state.showMoreDetails}
         />
       </div>

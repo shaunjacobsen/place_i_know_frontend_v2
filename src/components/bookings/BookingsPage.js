@@ -1,6 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Alert, Collapse, Icon } from 'antd';
-import AccommodationGroupList from './AccommodationGroupList';
+import AccommodationPanel from './AccommodationPanel';
 const Panel = Collapse.Panel;
 
 export class BookingsPage extends React.Component {
@@ -21,7 +22,7 @@ export class BookingsPage extends React.Component {
               closable
               showIcon
             />
-            <AccommodationGroupList />
+            <AccommodationPanel />
           </Panel>
           <Panel header={<div className="bookings__header">Flights</div>} key="2">
             <div />

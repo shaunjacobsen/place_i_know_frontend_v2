@@ -3,21 +3,9 @@ import { Icon, Divider } from 'antd';
 import { PlaceLocationDetails } from './../places/PlaceLocationDetails';
 
 export const AccommodationExtraInfo = props => {
-  const place = {
-    place_name: props.info.place.name,
-    place_address_1: props.info.place.address1,
-    place_address_2: props.info.place.address2,
-    place_city: props.info.place.city,
-    place_state: props.info.place.state,
-    place_postal: props.info.place.postal,
-    place_country: props.info.place.country,
-    place_website: props.info.place.website,
-    place_phone: props.info.place.phone,
-  };
-
   const mapInfo = {
-    lat: props.info.place.latitude,
-    lng: props.info.place.longitude,
+    lat: props.place.latitude,
+    lng: props.place.longitude,
   };
 
   return (
@@ -43,7 +31,12 @@ export const AccommodationExtraInfo = props => {
             ''
           )}
           <h3>Location & Contact</h3>
-          <PlaceLocationDetails place={place} mapInfo={mapInfo} />
+          <PlaceLocationDetails
+            place={this.props.place}
+            showHours={false}
+            showMap={true}
+            mapInfo={mapInfo}
+          />
         </div>
       ) : (
         ''
