@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import moment from 'moment';
 import { Icon } from 'antd';
 import { FlightLegExtraInfo } from './FlightLegExtraInfo';
+import { selectPlaceById } from './../../../selectors/place';
 import { humanizeDuration } from './../../../helpers/time';
 
 export class FlightLeg extends React.Component {
@@ -45,7 +47,7 @@ export class FlightLeg extends React.Component {
         <div className="flight-leg__information">
           <div className="leg departure">
             <div className="airport-code">{this.props.leg.departure_airport_code}</div>
-            <div className="airport-name">{this.props.leg.departure_airport}</div>
+            <div className="airport-name">{this.props.departurePlace.name}</div>
             {moment(this.props.leg.departure_time).format('ddd D MMM')}
             <br />
             {moment(this.props.leg.departure_time).format('h:mm a')}
@@ -53,7 +55,7 @@ export class FlightLeg extends React.Component {
           <Icon type="arrow-right" />
           <div className="leg arrival">
             <div className="airport-code">{this.props.leg.arrival_airport_code}</div>
-            <div className="airport-name">{this.props.leg.arrival_airport}</div>
+            <div className="airport-name">{this.props.arrivalPlace.name}</div>
             {moment(this.props.leg.arrival_time).format('ddd D MMM')}
             <br />
             {moment(this.props.leg.arrival_time).format('h:mm a')}
@@ -74,4 +76,17 @@ export class FlightLeg extends React.Component {
   }
 }
 
-export default FlightLeg;
+const mapStateToProps = (state, props) => {
+  return {
+    departurePlace: selectPlaceById(
+      props.leg.departure_place_id,
+      state.activeTrip.places.data
+    ),
+    arrivalPlace: selectPlaceById(
+      props.leg.arrival_place_id,
+      state.activeTrip.places.data
+    ),
+  };
+};
+
+export default connect(mapStateToProps)(FlightLeg);
