@@ -6,6 +6,8 @@ import accommodationGroupsReducer from './accommodationGroups';
 import accommodationsReducer from './accommodations';
 import flightGroupsReducer from './flightGroups';
 import flightsReducer from './flights';
+import trainGroupsReducer from './trainGroups';
+import trainsReducer from './trains';
 const initialTripState = [];
 
 export default (state = initialTripState, action) => {
@@ -193,26 +195,62 @@ export default (state = initialTripState, action) => {
     case 'FLIGHT_SELECT_START':
       return {
         ...state,
-        flightGroups: flightGroupsReducer(
-          state.flightGroups,
-          action
-        ),
+        flightGroups: flightGroupsReducer(state.flightGroups, action),
       };
     case 'FLIGHT_SELECT_ERROR':
       return {
         ...state,
-        flightGroups: flightGroupsReducer(
-          state.flightGroups,
-          action
-        ),
+        flightGroups: flightGroupsReducer(state.flightGroups, action),
       };
     case 'FLIGHT_SELECT_SUCCESS':
       return {
         ...state,
-        flightGroups: flightGroupsReducer(
-          state.flightGroups,
-          action
-        ),
+        flightGroups: flightGroupsReducer(state.flightGroups, action),
+      };
+    case 'GET_TRAIN_GROUPS_START':
+      return {
+        ...state,
+        trainGroups: trainGroupsReducer(state.trainGroups, action),
+      };
+    case 'GET_TRAIN_GROUPS_ERROR':
+      return {
+        ...state,
+        trainGroups: trainGroupsReducer(state.trainGroups, action),
+      };
+    case 'GET_TRAIN_GROUPS_SUCCESS':
+      return {
+        ...state,
+        trainGroups: trainGroupsReducer(state.trainGroups, action),
+      };
+    case 'GET_TRAINS_START':
+      return {
+        ...state,
+        trains: trainsReducer(state.trains, action),
+      };
+    case 'GET_TRAINS_ERROR':
+      return {
+        ...state,
+        trains: trainsReducer(state.trains, action),
+      };
+    case 'GET_TRAINS_SUCCESS':
+      return {
+        ...state,
+        trains: trainsReducer(state.trains, action),
+      };
+    case 'TRAIN_SELECT_START':
+      return {
+        ...state,
+        trainGroups: trainGroupsReducer(state.trainGroups, action),
+      };
+    case 'TRAIN_SELECT_ERROR':
+      return {
+        ...state,
+        trainGroups: trainGroupsReducer(state.trainGroups, action),
+      };
+    case 'TRAIN_SELECT_SUCCESS':
+      return {
+        ...state,
+        trainGroups: trainGroupsReducer(state.trainGroups, action),
       };
     default:
       return state;
