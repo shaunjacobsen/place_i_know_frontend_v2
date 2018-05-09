@@ -15,9 +15,13 @@ export class FlightGroupList extends React.Component {
   }
 
   render() {
-    return this.props.groups.map(group => {
-      return <FlightGroup key={group.flight_group_id} group={group} />;
-    });
+    return this.props.groups
+      .sort((a, b) => {
+        return a.sort_index > b.sort_index;
+      })
+      .map(group => {
+        return <FlightGroup key={group.flight_group_id} group={group} />;
+      });
   }
 }
 

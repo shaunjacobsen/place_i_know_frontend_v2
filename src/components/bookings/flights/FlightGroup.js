@@ -26,7 +26,7 @@ export class FlightGroup extends React.Component {
       return (
         <div>
           <h3 className="booking-list__title">{this.renderTitle()}</h3>
-          <Spin indicator={<Icon type="loading" spin />} /> Loading flights...
+          <Spin indicator={<Icon type="loading" spin />} /> Loading {this.props.group.title} flights...
         </div>
       );
     }
@@ -34,7 +34,7 @@ export class FlightGroup extends React.Component {
       <div>
         <h3 className="booking-list__title">{this.renderTitle()}</h3>
         <Row gutter={6}>
-          {this.props.group.flights.sort((a, b) => a.total < b.total).map(flightId => {
+          {this.props.group.flights.sort((a, b) => a < b).map(flightId => {
             return (
               <Col
                 key={flightId}

@@ -116,6 +116,7 @@ export const flightMarkSelectedStart = () => {
     type: 'FLIGHT_SELECT_START',
   };
 };
+
 export const flightMarkSelectedSuccess = flightGroups => {
   return {
     type: 'FLIGHT_SELECT_SUCCESS',
