@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Alert, Tabs, Icon } from 'antd';
 import AccommodationPanel from './AccommodationPanel';
 import FlightPanel from './flights/FlightPanel';
+import TrainPanel from './trains/TrainPanel';
 const TabPane = Tabs.TabPane;
 
 export class BookingsPage extends React.Component {
@@ -11,7 +12,7 @@ export class BookingsPage extends React.Component {
       <div>
         <Tabs
           tabPosition="left"
-          defaultActiveKey="2"
+          defaultActiveKey="3"
         >
           <TabPane tab="Hotels" key="1">
             <Alert
@@ -28,7 +29,7 @@ export class BookingsPage extends React.Component {
             <FlightPanel />
           </TabPane>
           <TabPane tab="Train/Bus" key="3">
-            <div />
+            <TrainPanel />
           </TabPane>
         </Tabs>
       </div>
