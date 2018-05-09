@@ -31,8 +31,8 @@ export class AccommodationInfo extends React.Component {
         className="button button--link"
         onClick={this.handleShowMoreOrLessDetailsClick}
       >
-        {this.state.showMoreDetails ? 'Fewer' : 'More'} details{' '}
-        <Icon type={this.state.showMoreDetails ? 'up' : 'down'} />
+        <Icon type={this.state.showMoreDetails ? 'up' : 'down'} />&nbsp;
+        {this.state.showMoreDetails ? 'Fewer' : 'More'} details
       </button>
     );
   };
@@ -84,9 +84,9 @@ export class AccommodationInfo extends React.Component {
             <Col xs={24} sm={this.props.confirmed ? 8 : 12}>
               <h4>Check In & Out</h4>
               <p>
-                Check in starts at {moment(this.props.info.check_in).format('h:mm a')}.
+                Check in starts at {moment(this.props.info.check_in).format('h:mm a')}.<br />
+                Check out by {moment(this.props.info.check_out).format('h:mm a')}.
               </p>
-              <p>Check out by {moment(this.props.info.check_out).format('h:mm a')}.</p>
             </Col>
           )}
         </Row>

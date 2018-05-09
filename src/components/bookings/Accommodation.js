@@ -5,7 +5,7 @@ import moment from 'moment';
 import { AccommodationInfo } from './AccommodationInfo';
 import { DateRange } from './../DateRange';
 import { accommodationMarkSelected } from './../../actions/accommodations';
-import { selectAccommodationById } from '../../selectors/accommodation';
+import { selectElementById } from '../../selectors/booking';
 import { selectPlaceById } from '../../selectors/place';
 
 export class Accommodation extends React.Component {
@@ -89,9 +89,10 @@ export class Accommodation extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-  const accommodation = selectAccommodationById(
+  const accommodation = selectElementById(
     props.accommodationId,
-    state.activeTrip.accommodations.data
+    state.activeTrip.accommodations.data,
+    'accommodation_id'
   );
   return {
     accommodation,

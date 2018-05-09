@@ -45,7 +45,7 @@ export class AccommodationGroup extends React.Component {
     }
     return (
       <div>
-        <h3 className="accommodation-list__title">{this.renderTitle()}</h3>
+        <h3 className="booking-list__title">{this.renderTitle()}</h3>
         <Row gutter={6}>
           {this.props.group.accommodation.sort((a, b) => a - b).map(accommodationId => {
             return (

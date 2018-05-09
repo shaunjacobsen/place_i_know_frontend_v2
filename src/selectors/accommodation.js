@@ -9,9 +9,3 @@ export const showAccommodationsForGroupBasedOnConfirmationStatus = (group, accom
     });
   }
 };
-
-export const selectAccommodationById = (accommodationId, accommodationList) => {
-  return accommodationList.find(accommodation => {
-    return accommodation.accommodation_id === accommodationId;
-  });
-};
