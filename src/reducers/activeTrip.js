@@ -4,6 +4,8 @@ import placesReducer from './places';
 import eventsReducer from './events';
 import accommodationGroupsReducer from './accommodationGroups';
 import accommodationsReducer from './accommodations';
+import flightGroupsReducer from './flightGroups';
+import flightsReducer from './flights';
 const initialTripState = [];
 
 export default (state = initialTripState, action) => {
@@ -155,6 +157,60 @@ export default (state = initialTripState, action) => {
         ...state,
         accommodationGroups: accommodationGroupsReducer(
           state.accommodationGroups,
+          action
+        ),
+      };
+    case 'GET_FLIGHT_GROUPS_START':
+      return {
+        ...state,
+        flightGroups: flightGroupsReducer(state.flightGroups, action),
+      };
+    case 'GET_FLIGHT_GROUPS_ERROR':
+      return {
+        ...state,
+        flightGroups: flightGroupsReducer(state.flightGroups, action),
+      };
+    case 'GET_FLIGHT_GROUPS_SUCCESS':
+      return {
+        ...state,
+        flightGroups: flightGroupsReducer(state.flightGroups, action),
+      };
+    case 'GET_FLIGHTS_START':
+      return {
+        ...state,
+        flights: flightsReducer(state.flights, action),
+      };
+    case 'GET_FLIGHTS_ERROR':
+      return {
+        ...state,
+        flights: flightsReducer(state.flights, action),
+      };
+    case 'GET_FLIGHTS_SUCCESS':
+      return {
+        ...state,
+        flights: flightsReducer(state.flights, action),
+      };
+    case 'FLIGHT_SELECT_START':
+      return {
+        ...state,
+        flightGroups: flightGroupsReducer(
+          state.flightGroups,
+          action
+        ),
+      };
+    case 'FLIGHT_SELECT_ERROR':
+      return {
+        ...state,
+        flightGroups: flightGroupsReducer(
+          state.flightGroups,
+          action
+        ),
+      };
+    case 'FLIGHT_SELECT_SUCCESS':
+      return {
+        ...state,
+        flightGroups: flightGroupsReducer(
+          state.flightGroups,
           action
         ),
       };
