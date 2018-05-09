@@ -24,6 +24,21 @@ export default (state = initialState, action) => {
         loading: false,
         error: action.error,
       };
+    case 'FLIGHT_SELECT_START':
+      return {
+        ...state,
+        error: null,
+      };
+    case 'FLIGHT_SELECT_SUCCESS':
+      return {
+        ...state,
+        data: action.flightGroups,
+      };
+    case 'FLIGHT_SELECT_ERROR':
+      return {
+        ...state,
+        error: action.error,
+      };
     default:
       return state;
   }
