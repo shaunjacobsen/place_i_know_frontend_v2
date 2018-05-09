@@ -39,7 +39,8 @@ export class AccommodationGroup extends React.Component {
     ) {
       return (
         <div>
-          <Spin indicator={<Icon type="loading" spin />} /> Loading hotels...
+        <h3 className="booking-list__title">{this.renderTitle()}</h3>
+          <Spin indicator={<Icon type="loading" spin />} /> Loading {this.props.group.title} hotels...
         </div>
       );
     }
