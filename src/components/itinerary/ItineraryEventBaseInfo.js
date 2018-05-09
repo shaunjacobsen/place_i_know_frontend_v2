@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { Divider, Icon } from 'antd';
 import { pluralize } from './../../helpers/stringHelpers';
+import { humanizeDuration } from './../../helpers/time'
 
 export class ItineraryEventBaseInfo extends React.Component {
   hasSetStartTime() {
@@ -14,23 +15,6 @@ export class ItineraryEventBaseInfo extends React.Component {
 
   hasOnlyDuration() {
     return this.props.event.duration;
-  }
-
-  humanizeDuration(minutes) {
-    if (typeof minutes !== 'number') {
-      minutes = Number(minutes);
-    }
-    // nice, even hours
-    if (minutes % 60 === 0) {
-      return pluralize(minutes / 60, 'hour');
-    } else {
-      const remainderMinutes = minutes % 60;
-      return (
-        pluralize(Math.floor(minutes / 60), 'hour') +
-        ' ' +
-        pluralize(remainderMinutes, 'minute')
-      );
-    }
   }
 
   getPrice(price) {
@@ -78,7 +62,7 @@ export class ItineraryEventBaseInfo extends React.Component {
           <Divider type="vertical" />
           <span className="card__basic-information--purple">
             <Icon type="clock-circle-o" />&nbsp;
-            {this.humanizeDuration(this.props.event.duration)}
+            {humanizeDuration(this.props.event.duration)}
           </span>
         </div>
       );
@@ -97,7 +81,7 @@ export class ItineraryEventBaseInfo extends React.Component {
         <div>
           <span className="card__basic-information--purple">
             <Icon type="clock-circle-o" />&nbsp;Around&nbsp;
-            {this.humanizeDuration(this.props.event.duration)}
+            {humanizeDuration(this.props.event.duration)}
           </span>
         </div>
       );
