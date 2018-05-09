@@ -40,7 +40,7 @@ export class FlightGroup extends React.Component {
                 key={flightId}
                 xs={24}
                 sm={12}
-                md={this.props.group.confirmed ? 24 : 8}
+                md={8}
               >
                 <Flight key={flightId} flightId={flightId} />
               </Col>

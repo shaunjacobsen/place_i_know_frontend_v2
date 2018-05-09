@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Alert, Icon, Divider, Button, Rate } from 'antd';
 import moment from 'moment';
-import { FlightLeg } from './FlightLeg';
+import FlightLeg from './FlightLeg';
 import { pluralize } from './../../../helpers/stringHelpers';
 import { flightMarkSelected } from './../../../actions/flights';
 import { selectElementById } from './../../../selectors/booking';
