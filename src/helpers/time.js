@@ -6,6 +6,8 @@ export const humanizeDuration = minutes => {
   }
   if (minutes % 60 === 0) {
     return pluralize(minutes / 60, 'hour');
+  } else if (minutes / 60 < 1) {
+    return pluralize(minutes, 'minute');
   } else {
     const remainderMinutes = minutes % 60;
     return (
