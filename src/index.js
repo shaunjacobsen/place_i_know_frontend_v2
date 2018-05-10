@@ -42,7 +42,7 @@ registerServiceWorker();
 const determinePathToRender = authState => {
   if (!!authState.user) {
     renderApp();
-    history.push('/signin');
+    history.push('/home');
   } else if (!authState.user && isUserSignedInOnBrowser()) {
     renderApp();
     // TODO remove this line after adding more routes
@@ -57,7 +57,7 @@ const determinePathToRender = authState => {
     });
   } else {
     renderApp();
-    history.push('/');
+    history.push('/signin');
   }
 };
 
