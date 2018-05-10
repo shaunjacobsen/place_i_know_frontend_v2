@@ -4,6 +4,7 @@ import placesReducer from './places';
 import eventsReducer from './events';
 import accommodationGroupsReducer from './accommodationGroups';
 import accommodationsReducer from './accommodations';
+import documentGroupsReducer from './documentGroups';
 import flightGroupsReducer from './flightGroups';
 import flightsReducer from './flights';
 import trainGroupsReducer from './trainGroups';
@@ -251,6 +252,30 @@ export default (state = initialTripState, action) => {
       return {
         ...state,
         trainGroups: trainGroupsReducer(state.trainGroups, action),
+      };
+    case 'GET_DOCUMENT_GROUPS_START':
+      return {
+        ...state,
+        documentGroups: documentGroupsReducer(
+          state.documentGroups,
+          action
+        ),
+      };
+    case 'GET_DOCUMENT_GROUPS_ERROR':
+      return {
+        ...state,
+        documentGroups: documentGroupsReducer(
+          state.documentGroups,
+          action
+        ),
+      };
+    case 'GET_DOCUMENT_GROUPS_SUCCESS':
+      return {
+        ...state,
+        documentGroups: documentGroupsReducer(
+          state.documentGroups,
+          action
+        ),
       };
     default:
       return state;
