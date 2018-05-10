@@ -1,0 +1,34 @@
+.document__data {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.document__title {
+  flex-basis: 50%;
+  flex-grow: 2;
+  font-size: 16px;
+  text-align: left;
+}
+
+.document__metadata {
+  color: darken($light-grey, 20%);
+  font-size: 12px;
+  text-align: right;
+  padding-right: 8px;
+}
+
+.document__actions {
+  flex-basis: content;
+  text-align: right;
+  div {
+    font-size: 24px;
+  }
+  button {
+    font-size: 24px;
+    padding: 6px 8px;
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+}

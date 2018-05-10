@@ -7,6 +7,7 @@ import { LoadingIndicator } from './../LoadingIndicator';
 import AttendeesList from './AttendeesList';
 import ItineraryPage from './../itinerary/ItineraryPage';
 import BookingsPage from './../bookings/BookingsPage';
+import DocumentsPage from './../documents/DocumentsPage';
 import { setActiveTrip } from './../../actions/activeTrip';
 import { getActiveTripAssociatedData } from './../../actions/activeTrip';
 const TabPane = Tabs.TabPane;
@@ -117,7 +118,7 @@ export class TripPage extends React.Component {
             }
             key="4"
           >
-            <div>DocumentsPage</div>
+            <DocumentsPage />
           </TabPane>
           <TabPane
             tab={
