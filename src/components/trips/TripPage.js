@@ -8,6 +8,7 @@ import AttendeesList from './AttendeesList';
 import ItineraryPage from './../itinerary/ItineraryPage';
 import BookingsPage from './../bookings/BookingsPage';
 import DocumentsPage from './../documents/DocumentsPage';
+import StatementPage from './../statement/StatementPage';
 import { setActiveTrip } from './../../actions/activeTrip';
 import { getActiveTripAssociatedData } from './../../actions/activeTrip';
 const TabPane = Tabs.TabPane;
@@ -128,7 +129,7 @@ export class TripPage extends React.Component {
             }
             key="5"
           >
-            <div>StatementPage</div>
+            <StatementPage />
           </TabPane>
         </Tabs>
       </div>
