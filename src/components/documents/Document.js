@@ -27,7 +27,7 @@ export class Document extends React.Component {
         }
       );
       if (request.status === 200 && request.data.download_url) {
-        window.open(request.data.download_url);
+        window.location.href = request.data.download_url;
         this.setState(() => ({
           isFetchingDownload: false,
         }));
