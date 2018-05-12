@@ -7,6 +7,7 @@ import accommodationsReducer from './accommodations';
 import documentGroupsReducer from './documentGroups';
 import flightGroupsReducer from './flightGroups';
 import flightsReducer from './flights';
+import statementReducer from './statement';
 import trainGroupsReducer from './trainGroups';
 import trainsReducer from './trains';
 const initialTripState = [];
@@ -256,26 +257,32 @@ export default (state = initialTripState, action) => {
     case 'GET_DOCUMENT_GROUPS_START':
       return {
         ...state,
-        documentGroups: documentGroupsReducer(
-          state.documentGroups,
-          action
-        ),
+        documentGroups: documentGroupsReducer(state.documentGroups, action),
       };
     case 'GET_DOCUMENT_GROUPS_ERROR':
       return {
         ...state,
-        documentGroups: documentGroupsReducer(
-          state.documentGroups,
-          action
-        ),
+        documentGroups: documentGroupsReducer(state.documentGroups, action),
       };
     case 'GET_DOCUMENT_GROUPS_SUCCESS':
       return {
         ...state,
-        documentGroups: documentGroupsReducer(
-          state.documentGroups,
-          action
-        ),
+        documentGroups: documentGroupsReducer(state.documentGroups, action),
+      };
+    case 'GET_CHARGES_START':
+      return {
+        ...state,
+        charges: statementReducer(state.charges, action),
+      };
+    case 'GET_CHARGES_ERROR':
+      return {
+        ...state,
+        charges: statementReducer(state.charges, action),
+      };
+    case 'GET_CHARGES_SUCCESS':
+      return {
+        ...state,
+        charges: statementReducer(state.charges, action),
       };
     default:
       return state;
