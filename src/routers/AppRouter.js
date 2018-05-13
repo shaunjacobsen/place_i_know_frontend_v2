@@ -8,6 +8,7 @@ import TripPage from '../components/trips/TripPage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import LoadingPage from '../components/LoadingPage';
+import ChatPage from '../components/chat/ChatPage';
 
 export const history = createHistory();
 
@@ -18,6 +19,7 @@ const AppRouter = () => (
         <PublicRoute exact path="/" component={LoadingPage} />
         <PublicRoute exact path="/signin" component={SigninPage} />
         <PrivateRoute exact path="/home" component={DashboardPage} />
+        <PrivateRoute exact path="/chat" component={ChatPage} />
         <PrivateRoute exact path="/trip/:id" component={TripPage} />
         <Route component={NotFoundPage} />
       </Switch>
