@@ -1,5 +1,5 @@
 import React from 'react';
-import { List } from 'antd';
+import { List, Divider } from 'antd';
 
 export const ItineraryNote = props => {
   return (
@@ -7,9 +7,11 @@ export const ItineraryNote = props => {
       <div className="card">
         <div className="card__content--text">
           <div className="card__title">{props.note.title}</div>
+          <Divider />
           <p>{props.note.body}</p>
         </div>
       </div>
     </List.Item>
   );
 };
+  

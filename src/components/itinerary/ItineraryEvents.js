@@ -4,7 +4,6 @@ import { List } from 'antd';
 import ItineraryEvent from './ItineraryEvent';
 import { ItineraryNote } from './ItineraryNote';
 import { ItineraryDirections } from './ItineraryDirections';
-import { showEventsForDate } from './../../selectors/itinerary';
 
 export class ItineraryEvents extends React.Component {
   constructor(props) {
@@ -18,7 +17,9 @@ export class ItineraryEvents extends React.Component {
       case 'note':
         return <ItineraryNote key={event.day_id} note={event.day_attributes} />;
       case 'directions':
-        return <ItineraryDirections key={event.day_id} directions={event.day_attributes} />
+        return (
+          <ItineraryDirections key={event.day_id} directions={event.day_attributes} />
+        );
       default:
         return event.type;
     }
@@ -27,7 +28,12 @@ export class ItineraryEvents extends React.Component {
   render() {
     return (
       <div>
-        <List itemLayout="vertical" size="large" split={false} loading={this.props.loading}>
+        <List
+          itemLayout="vertical"
+          size="large"
+          split={false}
+          loading={this.props.loading}
+        >
           {this.props.events.map(event => this.renderEventComponent(event))}
         </List>
       </div>
@@ -35,12 +41,4 @@ export class ItineraryEvents extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  const activeDate = state.activeTrip.itinerary.activeDate;
-  return {
-    activeDate,
-    events: showEventsForDate(activeDate, state.activeTrip.itineraryDays.data)
-  };
-};
-
-export default connect(mapStateToProps)(ItineraryEvents);
+export default ItineraryEvents;

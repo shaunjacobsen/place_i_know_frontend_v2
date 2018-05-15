@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { mapLoadBounds } from './../../actions/map';
 import { Map } from './Map';
+import { getPlaceCoordinatesForEvents } from '../../selectors/map';
 
 export class ItineraryEventsMap extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ export class ItineraryEventsMap extends React.Component {
     return (
       <div className="itinerary-map__container">
         <div className="itinerary-map__container--sticky">
-          <Map points={this.props.mapData.points} bounds={this.props.mapData.bounds} />
+          <Map points={this.props.mapPoints} />
         </div>
       </div>
     );
@@ -25,9 +26,13 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    mapData: state.map,
+    mapPoints: getPlaceCoordinatesForEvents(
+      ownProps.events,
+      state.activeTrip.events.data,
+      state.activeTrip.places.data
+    ),
   };
 };
 

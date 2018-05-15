@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Row, Col, Divider, Spin, Icon } from 'antd';
 import { getItineraryDays, getItineraryDateRange } from './../../actions/itineraryDays';
 import { getArrayOfDatesFromItineraryDays } from './../../helpers/itineraryHelpers';
+import { showEventsForDate } from './../../selectors/itinerary';
 import ItineraryDatesSelector from './ItineraryDatesSelector';
 import ItineraryEvents from './ItineraryEvents';
 import ItineraryEventsMap from './ItineraryEventsMap';
@@ -33,10 +34,10 @@ export class ItineraryPage extends React.Component {
         {this.props.itinerary.activeDate && (
           <Row gutter={{ md: 24 }}>
             <Col xs={24} md={15}>
-              <ItineraryEvents />
+              <ItineraryEvents events={this.props.events} />
             </Col>
             <Col xs={24} md={9}>
-              <ItineraryEventsMap />
+              <ItineraryEventsMap events={this.props.events} />
             </Col>
           </Row>
         )}
@@ -46,8 +47,11 @@ export class ItineraryPage extends React.Component {
 }
 
 const mapStateToProps = state => {
+  const activeDate = state.activeTrip.itinerary.activeDate;
   return {
+    activeDate,
     activeTrip: state.activeTrip,
+    events: showEventsForDate(activeDate, state.activeTrip.itineraryDays.data),
     itinerary: state.activeTrip.itinerary,
   };
 };

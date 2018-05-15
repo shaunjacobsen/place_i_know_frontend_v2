@@ -29,9 +29,6 @@ export class Map extends React.Component {
   fitMapToBounds() {
     if (this.props.points) {
       let bounds = new MapboxGl.LngLatBounds();
-      //   new MapboxGl.LngLat(this.props.bounds.se.lng, this.props.bounds.se.lat),
-      //   new MapboxGl.LngLat(this.props.bounds.nw.lng, this.props.bounds.nw.lat)
-      // );
       this.props.points.forEach(point => {
         bounds.extend(new MapboxGl.LngLat(point.lng, point.lat));
       });
