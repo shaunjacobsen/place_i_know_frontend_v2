@@ -33,7 +33,8 @@ export class ComposeMessage extends React.Component {
       <div className="chat__conversation__compose">
         <form onSubmit={this.onSubmit}>
           <input
-            placeholder="Message..."
+            autoFocus
+            placeholder="Type your message!"
             onChange={this.onChange}
             value={this.state.text}
           />

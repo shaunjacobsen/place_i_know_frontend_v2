@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Chatkit from '@pusher/chatkit';
 import { Icon, Spin } from 'antd';
 import ChatRoom from './ChatRoom';
+import ActiveRoomHeader from './ActiveRoomHeader';
 import ConversationPane from './ConversationPane';
 import ComposeMessage from './ComposeMessage';
 
@@ -43,7 +44,15 @@ export class ChatWindow extends React.Component {
               hooks: {
                 onNewMessage: message => {
                   this.setState(prevState => ({
-                    messages: [...prevState.messages, message.text],
+                    messages: [
+                      ...prevState.messages,
+                      {
+                        id: message.id,
+                        created: message.createdAt,
+                        sender: message.sender,
+                        text: message.text,
+                      },
+                    ],
                   }));
                 },
               },
@@ -76,7 +85,15 @@ export class ChatWindow extends React.Component {
         hooks: {
           onNewMessage: message => {
             this.setState(prevState => ({
-              messages: [...prevState.messages, message.text],
+              messages: [
+                ...prevState.messages,
+                {
+                  id: message.id,
+                  created: message.createdAt,
+                  sender: message.sender,
+                  text: message.text,
+                },
+              ],
             }));
           },
         },
@@ -88,12 +105,12 @@ export class ChatWindow extends React.Component {
       });
   };
 
-  handleMessageSend = (text) => {
+  handleMessageSend = text => {
     this.state.currentUser.sendMessage({
       text,
       roomId: this.state.currentRoom.id,
     });
-  }
+  };
 
   render() {
     return (
@@ -103,6 +120,7 @@ export class ChatWindow extends React.Component {
             this.state.currentUser.rooms.map(room => {
               return (
                 <ChatRoom
+                  active={room.id === this.state.currentRoom.id}
                   key={room.id}
                   room={room}
                   currentUser={this.state.currentUser}
@@ -112,6 +130,13 @@ export class ChatWindow extends React.Component {
             })}
         </div>
         <div className="chat__conversation">
+          {this.state.currentRoom.users !== undefined && (
+            <ActiveRoomHeader
+              room={this.state.currentRoom}
+              currentUserId={this.state.currentUser.id}
+            />
+          )}
+
           <ConversationPane
             roomId={this.state.currentRoom.id}
             chat={this.state.currentUser}

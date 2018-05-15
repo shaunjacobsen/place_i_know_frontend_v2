@@ -6,12 +6,18 @@ import { ChatMessage } from './ChatMessage';
 export class ConversationPane extends React.Component {
   render() {
     if (this.props.loading) {
-      return <Spin indicator={<Icon type="loading" spin />} />
+      return <Spin indicator={<Icon type="loading" spin />} />;
     }
     return (
       <div className="chat__conversation__list">
         {this.props.messages.map(message => {
-          return <ChatMessage message={message} key={message} />;
+          return (
+            <ChatMessage
+              message={message}
+              key={message.id}
+              sentByCurrentUser={message.sender.id === this.props.chat.id}
+            />
+          );
         })}
       </div>
     );
