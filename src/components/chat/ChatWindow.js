@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import Chatkit from '@pusher/chatkit';
 import { Icon, Spin } from 'antd';
 import ChatRoom from './ChatRoom';
@@ -91,19 +92,7 @@ export class ChatWindow extends React.Component {
         roomId: data,
         messageLimit: 50,
         hooks: {
-          onNewMessage: message => {
-            this.setState(prevState => ({
-              messages: [
-                ...prevState.messages,
-                {
-                  id: message.id,
-                  created: message.createdAt,
-                  sender: message.sender,
-                  text: message.text,
-                },
-              ],
-            }));
-          },
+          onNewMessage: this.addMessage,
           onUserStartedTyping: user => {
             this.setState(prevState => ({
               usersTyping: [prevState.usersTyping, user.name],
@@ -126,11 +115,78 @@ export class ChatWindow extends React.Component {
       });
   };
 
+  addMessage = message => {
+    const roomId = message.room.id;
+    this.setState(prevState => ({
+      messages: [
+        ...prevState.messages,
+        {
+          id: message.id,
+          created: message.createdAt,
+          sender: message.sender,
+          text: message.text,
+        },
+      ],
+    }));
+    if (roomId === this.state.currentRoom.id) {
+      const cursor = this.state.currentUser.readCursor({ roomId }) || {};
+      const cursorPosition = cursor.position || 0;
+      cursorPosition < message.id && this.setCursor(roomId, message.id);
+      this.scrollToEnd();
+    }
+  };
+
   handleMessageSend = text => {
-    this.state.currentUser.sendMessage({
-      text,
-      roomId: this.state.currentRoom.id,
-    });
+    this.state.currentUser
+      .sendMessage({
+        text,
+        roomId: this.state.currentRoom.id,
+      })
+      .then(async messageId => {
+        const request = axios.post(
+          `${process.env.REACT_APP_API_URL}/chat/room/${
+            this.state.currentRoom.id
+          }/message`,
+          {
+            pusher_message_id: messageId,
+            body: text,
+          },
+          {
+            headers: {
+              'x-auth': this.props.user.token,
+            },
+          }
+        );
+        if (request.status === 200) {
+        }
+      });
+  };
+
+  setCursor = (roomId, messageId) => {
+    this.state.currentUser
+      .setReadCursor({ roomId, position: parseInt(messageId) })
+      .then(async x => {
+        const request = axios.post(
+          `${
+            process.env.REACT_APP_API_URL
+          }/chat/room/${roomId}/message/${messageId}/mark_read`,
+          {},
+          {
+            headers: {
+              'x-auth': this.props.user.token,
+            },
+          }
+        );
+        if (request.status === 200) {
+        }
+      });
+  };
+
+  scrollToEnd = (e) => {
+    setTimeout(() => {
+      const element = document.querySelector('.chat__conversation__list');
+      element && (element.scrollTop = 10000000);
+    })
   };
 
   handleTypingEvent = () => {
