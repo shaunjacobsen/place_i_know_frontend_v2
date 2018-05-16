@@ -19,12 +19,22 @@
   align-items: center;
   background: lighten($light-grey, 10%);
   border-bottom: thin solid darken($light-grey, 0%);
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   padding: 16px 20px;
+  transition: background-color 0.4s ease, border-left 0.4s ease;
   &.active {
     background: lighten($brand-teal, 25%);
+    border: none;
+    border-left: 5px solid $brand-teal;
     font-weight: 600;
+    &:hover {
+      background: lighten($brand-teal, 25%);
+    }
+  }
+  &:hover {
+    background: darken($light-grey, 1%);
   }
 }
 
@@ -36,7 +46,8 @@
 .chat__contact-avatar {
   flex-direction: row;
   margin-bottom: 6px;
-  span {
+  div {
+    display: inline-block;
     margin-right: 6px;
   }
 }
@@ -56,22 +67,90 @@
   width: 100%;
 }
 
+.chat__conversation__header {
+  align-items: center;
+  border-bottom: 1px solid darken($light-grey, 10%);
+  display: flex;
+  flex-direction: row;
+  height: 72px;
+  padding: 16px 24px;
+  h2 {
+    flex-grow: 1;
+    margin: 0;
+    text-overflow: ellipsis;
+  }
+  .users {
+    span {
+      margin-right: 6px;
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
 .chat__conversation__list {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
+  height: calc(100% - 160px);
+  overflow: hidden;
+  overflow-y: auto;
+  padding: 16px 24px;
+}
+
+.chat__conversation__message {
+  justify-content: flex-start;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  margin-bottom: 12px;
+  max-width: calc(100% - 150px);
+}
+
+.chat__conversation__message-text {
+  background: #1890ff;
+  border-radius: 4px;
+  padding: 6px 12px;
+  vertical-align: top;
+}
+
+.chat__conversation__message--right {
+  align-self: flex-end;
+  text-align: right;
+  .chat__conversation__message-text {
+    background: #bae7ff;
+    color: $slate-grey;
+  }
+}
+
+.chat__conversation__message-sender {
+  color: darken($light-grey, 20%);
+  align-self: flex-start;
+  font-size: 10px;
+  margin-right: 6px;
 }
 
 .chat__conversation__compose {
   border-top: 1px solid darken($light-grey, 10%);
-  height: 70px;
-  padding: 16px 24px;
+  min-height: 72px;
+  padding: 12px 24px;
   > form {
     display: flex;
-    input {
+    textarea {
       background: none;
       border: none;
       flex: 1;
       font-size: 16px;
+      margin: 12px 0;
       outline: none;
+      resize: none;
+      text-align: right;
     }
   }
+}
+
+.chat__typing {
+  min-height: 16px;
 }
