@@ -16,17 +16,23 @@ export class ChatRoom extends React.Component {
           <div className="chat__contact-avatar">
             {this.props.room.users.map(user => {
               return (
-                <Tooltip
-                  title={this.props.currentUser.id === user.id ? 'You' : user.name}
-                  key={user.id}
-                >
-                  <Avatar
-                    shape="square"
-                    size="small"
-                    src={user.avatarURL}
+                <div>
+                  <Tooltip
+                    title={this.props.currentUser.id === user.id ? 'You' : user.name}
                     key={user.id}
-                  />
-                </Tooltip>
+                  >
+                    <Badge
+                      status={user.presence.state === 'online' ? 'success' : 'default'}
+                    >
+                      <Avatar
+                        shape="square"
+                        size="small"
+                        src={user.avatarURL}
+                        key={user.id}
+                      />
+                    </Badge>
+                  </Tooltip>
+                </div>
               );
             })}
           </div>

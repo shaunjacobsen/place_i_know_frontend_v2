@@ -6,6 +6,7 @@ import ChatRoom from './ChatRoom';
 import ActiveRoomHeader from './ActiveRoomHeader';
 import ConversationPane from './ConversationPane';
 import ComposeMessage from './ComposeMessage';
+import TypingIndicator from './TypingIndicator';
 
 export class ChatWindow extends React.Component {
   constructor(props) {
@@ -14,6 +15,8 @@ export class ChatWindow extends React.Component {
       currentUser: {},
       currentRoom: {},
       messages: [],
+      usersTyping: [],
+      loadingRoom: true,
     };
   }
 
@@ -55,11 +58,15 @@ export class ChatWindow extends React.Component {
                     ],
                   }));
                 },
+                onUserCameOnline: () => this.forceUpdate(),
+                onUserWentOffline: () => this.forceUpdate(),
+                onUserJoined: () => this.forceUpdate(),
               },
             })
             .then(currentRoom => {
               this.setState(() => ({
                 currentRoom,
+                loadingRoom: false,
               }));
             });
         }
@@ -77,6 +84,7 @@ export class ChatWindow extends React.Component {
     this.setState(() => ({
       messages: [],
       currentRoom: {},
+      loadingRoom: true,
     }));
     this.state.currentUser
       .subscribeToRoom({
@@ -96,11 +104,24 @@ export class ChatWindow extends React.Component {
               ],
             }));
           },
+          onUserStartedTyping: user => {
+            this.setState(prevState => ({
+              usersTyping: [prevState.usersTyping, user.name],
+            }));
+          },
+          onUserStoppedTyping: user => {
+            this.setState(prevState => ({
+              usersTyping: prevState.usersTyping.filter(
+                username => username !== user.name
+              ),
+            }));
+          },
         },
       })
       .then(currentRoom => {
         this.setState(() => ({
           currentRoom,
+          loadingRoom: false,
         }));
       });
   };
@@ -110,6 +131,14 @@ export class ChatWindow extends React.Component {
       text,
       roomId: this.state.currentRoom.id,
     });
+  };
+
+  handleTypingEvent = () => {
+    this.state.currentUser
+      .isTypingIn({
+        roomId: this.state.currentRoom.id,
+      })
+      .catch(e => console.log(e));
   };
 
   render() {
@@ -130,22 +159,23 @@ export class ChatWindow extends React.Component {
             })}
         </div>
         <div className="chat__conversation">
-          {this.state.currentRoom.users !== undefined && (
-            <ActiveRoomHeader
-              room={this.state.currentRoom}
-              currentUserId={this.state.currentUser.id}
-            />
-          )}
-
+          <ActiveRoomHeader
+            room={this.state.currentRoom}
+            currentUserId={this.state.currentUser.id}
+            loading={this.state.loadingRoom}
+          />
           <ConversationPane
             roomId={this.state.currentRoom.id}
             chat={this.state.currentUser}
             messages={this.state.messages}
+            loading={this.state.loadingRoom}
           />
           <ComposeMessage
             roomId={this.state.currentRoom.id}
             chat={this.state.currentUser}
             onSubmit={this.handleMessageSend}
+            loading={this.state.loadingRoom}
+            usersTyping={this.state.usersTyping}
           />
         </div>
       </div>

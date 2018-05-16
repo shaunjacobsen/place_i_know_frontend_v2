@@ -6,7 +6,11 @@ import { ChatMessage } from './ChatMessage';
 export class ConversationPane extends React.Component {
   render() {
     if (this.props.loading) {
-      return <Spin indicator={<Icon type="loading" spin />} />;
+      return (
+        <div className="chat__conversation__list">
+          <Spin indicator={<Icon type="loading" spin />} />
+        </div>
+      );
     }
     return (
       <div className="chat__conversation__list">

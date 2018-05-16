@@ -15,7 +15,7 @@ export class ChatMessage extends React.Component {
           <div className="chat__conversation__message-sender">
             <Tooltip title={this.props.message.sender.name}>
               <Avatar
-                shape="circle"
+                shape="square"
                 size="small"
                 src={this.props.message.sender.avatarURL}
               />

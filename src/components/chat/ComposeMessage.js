@@ -1,5 +1,6 @@
 import React from 'react';
 import { Input } from 'antd';
+import TypingIndicator from './TypingIndicator';
 const { TextArea } = Input;
 
 export class ComposeMessage extends React.Component {
@@ -10,6 +11,12 @@ export class ComposeMessage extends React.Component {
     };
   }
 
+  onKeyPress = e => {
+    if (e.keyCode === 13 && !e.shiftKey) {
+      this.onSubmit(e);
+    }
+  };
+  
   onSubmit = e => {
     e.preventDefault();
     this.props.onSubmit(this.state.text);
@@ -32,13 +39,16 @@ export class ComposeMessage extends React.Component {
     return (
       <div className="chat__conversation__compose">
         <form onSubmit={this.onSubmit}>
-          <input
+          <TextArea
             autoFocus
-            placeholder="Type your message!"
+            autosize={{ minRows: 1, maxRows: 4 }}
             onChange={this.onChange}
+            onKeyDown={this.onKeyPress}
+            placeholder="Type your message!"
             value={this.state.text}
           />
         </form>
+        <TypingIndicator usersTyping={this.props.usersTyping} />
       </div>
     );
   }
