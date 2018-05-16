@@ -1,7 +1,7 @@
 import React from 'react';
 import { Avatar, Badge, Tooltip } from 'antd';
 
-export class ChatRoom extends React.Component {
+export class ChatRoomOption extends React.Component {
   determineActiveClass() {
     return this.props.active ? 'chat__contact active' : 'chat__contact';
   }
@@ -47,4 +47,4 @@ export class ChatRoom extends React.Component {
   }
 }
 
-export default ChatRoom;
+export default ChatRoomOption;

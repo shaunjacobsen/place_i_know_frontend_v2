@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import Chatkit from '@pusher/chatkit';
 import { Icon, Spin } from 'antd';
-import ChatRoom from './ChatRoom';
+import ChatRoomOption from './ChatRoomOption';
 import ActiveRoomHeader from './ActiveRoomHeader';
 import ConversationPane from './ConversationPane';
 import ComposeMessage from './ComposeMessage';
@@ -204,7 +204,7 @@ export class ChatWindow extends React.Component {
           {this.state.currentUser.rooms !== undefined &&
             this.state.currentUser.rooms.map(room => {
               return (
-                <ChatRoom
+                <ChatRoomOption
                   active={room.id === this.state.currentRoom.id}
                   key={room.id}
                   room={room}
