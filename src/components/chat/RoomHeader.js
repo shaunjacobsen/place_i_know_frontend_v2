@@ -5,7 +5,7 @@ export const RoomHeader = ({ state: { room, user, sidebarOpen, userListOpen } })
   <div className="chat__conversation__header">
     <h2>{room.name}</h2>
     <div className="users">
-      {/* {room.users.map(roomUser => {
+      {room.users.map(roomUser => {
         return (
           <Tooltip
             title={user.id === roomUser.id ? 'You' : roomUser.name}
@@ -19,7 +19,7 @@ export const RoomHeader = ({ state: { room, user, sidebarOpen, userListOpen } })
             />
           </Tooltip>
         );
-      })} */}
+      })}
     </div>
   </div>
 );

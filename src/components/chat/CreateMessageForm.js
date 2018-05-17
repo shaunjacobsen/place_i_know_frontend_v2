@@ -13,7 +13,7 @@ export const CreateMessageForm = ({
           e.preventDefault();
           const message = e.target[0].value;
           e.target[0].value = '';
-          message.length > 0 && handleSendMessage({ message });
+          message.length > 0 && handleSendMessage(message);
         }}
       >
         <input

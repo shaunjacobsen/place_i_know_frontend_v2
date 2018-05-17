@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { set, del } from 'object-path-immutable';
+import { Spin, Icon } from 'antd';
 import RoomList from './RoomList';
 import MessageList from './MessageList';
 import TypingIndicator from './TypingIndicator';
@@ -43,7 +44,21 @@ export class ChatPage extends React.Component {
     setCursor: (roomId, cursorPosition) => {
       this.state.user
         .setReadCursor({ roomId, position: parseInt(cursorPosition) })
-        .then(x => this.forceUpdate());
+        .then(async () => {
+          const request = axios.post(
+            `${
+              process.env.REACT_APP_API_URL
+            }/chat/room/${roomId}/message/${cursorPosition}/mark_read`,
+            {},
+            {
+              headers: {
+                'x-auth': this.props.user.token,
+              },
+            }
+          );
+          if (request.status === 200) {
+          }
+        });
     },
 
     addMessage: payload => {
@@ -66,9 +81,7 @@ export class ChatPage extends React.Component {
         })
         .then(async messageId => {
           const request = axios.post(
-            `${process.env.REACT_APP_API_URL}/chat/room/${
-              this.state.room.id
-            }/message`,
+            `${process.env.REACT_APP_API_URL}/chat/room/${this.state.room.id}/message`,
             {
               pusher_message_id: messageId,
               body: message,
@@ -91,10 +104,10 @@ export class ChatPage extends React.Component {
       }, 0),
 
     isTyping: (room, user) =>
-      this.setState(set(this.state, ['typing', room.id, user.id], true)),
+      this.setState(set(this.state, ['typing', room.id, user.name], true)),
 
     notTyping: (room, user) =>
-      this.setState(del(this.state, ['typing', room.id, user.id])),
+      this.setState(del(this.state, ['typing', room.id, user.name])),
 
     setUserPresence: () => this.forceUpdate(),
   };
@@ -108,25 +121,34 @@ export class ChatPage extends React.Component {
 
   render() {
     const { user, room, messages, typing, sidebarOpen, userListOpen } = this.state;
+    if (user.id) {
+      return (
+        <div className="chat">
+          <div className="chat__contacts">
+            <RoomList
+              user={user}
+              rooms={user.rooms}
+              messages={messages}
+              typing={typing}
+              current={room}
+              actions={this.actions}
+            />
+          </div>
+          {room.id ? (
+            <div className="chat__conversation">
+              <RoomHeader state={this.state} />
+              <MessageList user={user} messages={messages[room.id]} />
+              <TypingIndicator typing={typing[room.id]} />
+              <CreateMessageForm state={this.state} actions={this.actions} />
+            </div>
+          ) : null}
+        </div>
+      );
+    }
 
     return (
       <div className="chat">
-        <div className="chat__contacts">
-          <RoomList
-            user={user}
-            rooms={user.rooms}
-            messages={messages}
-            typing={typing}
-            current={room}
-            actions={this.actions}
-          />
-        </div>
-        <div className="chat__conversation">
-          <RoomHeader state={this.state} />
-          <MessageList user={user} messages={messages[room.id]} />
-          <TypingIndicator typing={typing[room.id]} />
-          <CreateMessageForm state={this.state} actions={this.actions} />
-        </div>
+        <Spin indicator={<Icon type="loading" spin />} />
       </div>
     );
   }

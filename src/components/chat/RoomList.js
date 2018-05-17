@@ -22,13 +22,13 @@ export const RoomList = ({ rooms = [], user, messages, current, typing, actions 
     const order = priority(user, room, messages[room.id]);
     const unreadCount = unreads(user, room, messages[room.id]);
     return (
-      <div className="chat__contact">
-        <div
-          key={room.id}
-          disabled={room.id === current.id}
-          onClick={e => actions.joinRoom(room)}
-          className="chat__contact__details"
-        >
+      <div
+        key={room.id}
+        disabled={room.id === current.id}
+        onClick={e => actions.joinRoom(room)}
+        className={room.id === current.id ? 'chat__contact active' : 'chat__contact'}
+      >
+        <div className="chat__contact__details">
           <div className="chat__contact-avatar">
             {room.users.map(roomUser => {
               return (
@@ -54,18 +54,23 @@ export const RoomList = ({ rooms = [], user, messages, current, typing, actions 
               );
             })}
           </div>
+
           <div className="chat__contact-room-title">{room.name}</div>
-          <span>{latestMessage && latestMessage.text}</span>
-          {room.id !== current.id && unreadCount ? (
-            <div className="chat__contact-unread-count">
-              {this.props.room.id !== this.props.currentRoom.id && unreadCount ? (
-                <Badge count={unreadCount} />
-              ) : (
-                <div />
-              )}
-            </div>
-          ) : Object.keys(typing[room.id] || {}).length > 0 ? (
+          <div className="chat__contact__most-recent-message">
+            {latestMessage && latestMessage.text}
+          </div>
+          {Object.keys(typing[room.id] || {}).length > 0 ? (
             <div className="chat__dots">{[0, 1, 2].map(x => <div key={x} />)}</div>
+          ) : null}
+        </div>
+
+        <div className="chat__contact-unread-count">
+          {room.id !== current.id && unreadCount ? (
+            room.id !== current.id && unreadCount ? (
+              <Badge count={unreadCount} />
+            ) : (
+              <div />
+            )
           ) : null}
         </div>
       </div>

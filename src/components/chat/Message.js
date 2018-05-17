@@ -26,7 +26,9 @@ export const Message = ({ user }) => message =>
       ) : null}
 
       <div>
-        <span>{`${message.sender.name} | ${moment(message.createdAt).fromNow()}`}</span>
+        <div className="sender">{`${message.sender.name} | ${moment(
+          message.createdAt
+        ).fromNow()}`}</div>
         <p>
           <Linkify properties={{ target: '_blank' }}>{message.text}</Linkify>
         </p>

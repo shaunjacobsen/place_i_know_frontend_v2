@@ -7,7 +7,7 @@ const emptyList = (
       📝
     </span>
     <h2>No Messages Yet</h2>
-    <p>Be the first to post in this room or invite someone to join the room</p>
+    <p>Let us know if you have any questions about your trip!</p>
   </div>
 );
 
@@ -16,7 +16,6 @@ export const MessageList = ({ messages = {}, user }) => (
     {Object.keys(messages).length > 0 ? (
       <wrapper->
         {Object.keys(messages)
-          .reverse()
           .map(k => Message({ user })(messages[k]))}
       </wrapper->
     ) : (
