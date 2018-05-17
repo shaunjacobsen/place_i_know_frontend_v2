@@ -208,7 +208,9 @@ export class ChatWindow extends React.Component {
                   active={room.id === this.state.currentRoom.id}
                   key={room.id}
                   room={room}
+                  messages={this.state.messages}
                   currentUser={this.state.currentUser}
+                  currentRoom={this.state.currentRoom}
                   handleClick={this.handleRoomSelection}
                 />
               );

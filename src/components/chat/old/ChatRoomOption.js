@@ -6,7 +6,21 @@ export class ChatRoomOption extends React.Component {
     return this.props.active ? 'chat__contact active' : 'chat__contact';
   }
 
+  unreads = (user, room, messages = {}) => {
+    const read = user.readCursor({ roomId: room.id });
+    return (
+      (read && Object.keys(messages).filter(message => message > read.position).length) ||
+      undefined
+    );
+  };
+
   render() {
+    console.log(this.props.messages);
+    const unreadCount = this.unreads(
+      this.props.currentUser,
+      this.props.room,
+      this.props.messages[this.props.room.id]
+    );
     return (
       <div
         className={this.determineActiveClass()}
@@ -40,7 +54,11 @@ export class ChatRoomOption extends React.Component {
         </div>
 
         <div className="chat__contact-unread-count">
-          <Badge count={0} />
+          {this.props.room.id !== this.props.currentRoom.id && unreadCount ? (
+            <Badge count={unreadCount} />
+          ) : (
+            <div />
+          )}
         </div>
       </div>
     );
