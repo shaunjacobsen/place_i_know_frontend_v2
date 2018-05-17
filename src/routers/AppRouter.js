@@ -2,6 +2,7 @@ import React from 'react';
 import { Router, Route, Switch, Link, NavLink } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import SigninPage from './../components/SigninPage';
+import ResetPasswordPage from './../components/ResetPasswordPage';
 import DashboardPage from './../components/DashboardPage';
 import NotFoundPage from './../components/NotFoundPage';
 import TripPage from '../components/trips/TripPage';
@@ -18,6 +19,11 @@ const AppRouter = () => (
       <Switch>
         <PublicRoute exact path="/" component={LoadingPage} />
         <PublicRoute exact path="/signin" component={SigninPage} />
+        <PublicRoute
+          exact
+          path="/reset_password/:resetId/:tokenId"
+          component={ResetPasswordPage}
+        />
         <PrivateRoute exact path="/home" component={DashboardPage} />
         <PrivateRoute exact path="/chat" component={ChatPage} />
         <PrivateRoute exact path="/trip/:id" component={TripPage} />
