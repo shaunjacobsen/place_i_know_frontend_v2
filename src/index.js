@@ -40,13 +40,16 @@ ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 registerServiceWorker();
 
 const determinePathToRender = authState => {
+  if (window.location.pathname.split('/')[1] === 'reset_password') {
+    renderApp();
+    history.push(window.location.pathname);
+    return;
+  }
   if (!!authState.user) {
     renderApp();
     history.push('/home');
   } else if (!authState.user && isUserSignedInOnBrowser()) {
     renderApp();
-    // TODO remove this line after adding more routes
-    console.log('should not appear a lot');
     const authKey = localStorage.getItem('authKey');
     getAuthTokenDetails(authKey).then((user) => {
       store.dispatch(signInSuccess(user, authKey));

@@ -10,6 +10,7 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import LoadingPage from '../components/LoadingPage';
 import ChatPage from '../components/chat/ChatPage';
+import AccountPage from '../components/account/AccountPage';
 
 export const history = createHistory();
 
@@ -26,6 +27,7 @@ const AppRouter = () => (
         />
         <PrivateRoute exact path="/home" component={DashboardPage} />
         <PrivateRoute exact path="/chat" component={ChatPage} />
+        <PrivateRoute exact path="/account" component={AccountPage} />
         <PrivateRoute exact path="/trip/:id" component={TripPage} />
         <Route component={NotFoundPage} />
       </Switch>

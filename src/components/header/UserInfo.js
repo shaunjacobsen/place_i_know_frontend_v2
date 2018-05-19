@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { history } from './../../routers/AppRouter';
 import { Popover } from 'antd';
 import { startSignOut } from './../../actions/auth';
 
@@ -9,16 +10,22 @@ export const UserInfo = props => {
       Sign out
     </a>
   );
-  const popoverContent = (
-    <div>
-      {signOutButton}
-    </div>
-  );
+
+  const clickAccountImage = () => {
+    history.push('/account');
+  }
+  
+  const popoverContent = <div>{signOutButton}</div>;
   const fullName = props.user.firstName + ' ' + props.user.lastName;
   return (
     <div className="user-info">
       <Popover placement="topLeft" content={popoverContent} title={fullName}>
-        <img src={props.user.avatar} alt="avatar image" className="user-info__avatar" />
+        <img
+          src={props.user.avatar}
+          alt="avatar image"
+          className="user-info__avatar"
+          onClick={clickAccountImage}
+        />
       </Popover>
     </div>
   );
