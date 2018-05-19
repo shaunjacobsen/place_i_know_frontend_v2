@@ -22,6 +22,14 @@ export default (state = {}, action) => {
       };
     case 'SIGN_OUT':
       return {};
+    case 'UPDATE_AVATAR':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          avatar: action.url,
+        },
+      };
     default:
       return state;
   }
