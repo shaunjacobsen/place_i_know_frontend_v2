@@ -12,7 +12,9 @@ const DateField = makeField(DatePicker);
 const phonePrefixSelector = (
   <Select style={{ width: 75 }}>
     {phonePrefixes.map(prefix => (
-      <Select.Option value={prefix.dial_code}>{prefix.dial_code}</Select.Option>
+      <Select.Option key={prefix.code} value={prefix.dial_code}>
+        {prefix.dial_code}
+      </Select.Option>
     ))}
   </Select>
 );
@@ -31,7 +33,7 @@ export class AccountContactForm extends React.Component {
         <Field label="ZIP/Postal Code" name="zip" component={InputField} />
         <Field label="Country" name="zip" component={SelectField}>
           {countryList.map(country => (
-            <Select.Option value={country.code}>{country.name}</Select.Option>
+            <Select.Option key={country.name} value={country.code}>{country.name}</Select.Option>
           ))}
         </Field>
         <Field

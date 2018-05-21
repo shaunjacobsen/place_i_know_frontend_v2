@@ -30,6 +30,9 @@ export class CropImage extends React.Component {
           aspectRatio={1}
           guides={true}
           crop={this.cropData}
+          viewMode={1}
+          background={false}
+          highlight={false}
         />
         <div className="account__avatar-save">
           <Button

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { Alert, Upload, Icon, Spin } from 'antd';
+import { Alert, Upload, Icon, Spin, Divider } from 'antd';
 import CropImage from './CropImage';
 import { updateAvatar } from './../../actions/user';
 
@@ -74,21 +74,22 @@ export class UpdateAvatar extends React.Component {
 
   beforeUpload = file => {
     const isSmallEnough = file.size / 1024 / 1024 <= 3;
+    const isCorrectFileType =
+      file.type === 'image/jpeg' ||
+      file.type === 'image/jpg' ||
+      file.type === 'image/png';
     if (!isSmallEnough) {
       this.setState(() => ({
-        imageUploadError: 'Image must be 3mb or smaller.',
+        imageUploadError: 'Image must be 3 MB or smaller.',
       }));
     }
+    if (!isCorrectFileType) {
+      this.setState(() => ({
+        imageUploadError: 'Please select an image ending in .jpg, .jpeg, or .png',
+      }));
+    }
+    return isSmallEnough && isCorrectFileType;
   };
-
-  async getUploadSignature() {
-    const signature = axios.get(`${process.env.REACT_APP_API_URL}/image/sign_upload`, {
-      data: {},
-      headers: {
-        'x-auth': this.props.authToken,
-      },
-    });
-  }
 
   uploadCroppedAvatar = async data => {
     try {
@@ -106,6 +107,15 @@ export class UpdateAvatar extends React.Component {
       );
       if (uploadRequest.status === 201) {
         this.props.updateAvatarUrl(uploadRequest.data.new_image_url);
+        this.setState(() => ({
+          isFinalImageUploaded: true,
+          isFinalImageUploading: false,
+          imageUploadError: undefined,
+          isUploadingImage: false,
+          isInitialImageUploaded: false,
+          initialUploadedImagePublicId: undefined,
+          initialUploadedImageUrl: undefined,
+        }));
       }
     } catch (e) {
       this.handleErrorUploadingFinal();
@@ -154,6 +164,9 @@ export class UpdateAvatar extends React.Component {
         <div>
           {this.state.imageUploadError && (
             <Alert message={this.state.imageUploadError} type="error" showIcon />
+          )}
+          {this.state.isFinalImageUploaded && (
+            <Alert message="New avatar successfully uploaded." type="success" showIcon />
           )}
           <Upload
             name="avatar"
