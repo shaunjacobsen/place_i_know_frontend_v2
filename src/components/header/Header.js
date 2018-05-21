@@ -8,7 +8,18 @@ import UserInfo from './UserInfo';
 export class Header extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      isMenuOpen: false,
+    };
   }
+
+  clickMenuIcon = e => {
+    e.preventDefault();
+    this.setState(prevState => ({
+      isMenuOpen: !prevState.isMenuOpen,
+    }));
+  };
 
   render() {
     return (
@@ -40,6 +51,43 @@ export class Header extends React.Component {
               </div>
             </Link>
           </div>
+
+          <UserInfo />
+        </div>
+        <div className="header__content-mobile">
+          <Link to="/home">
+            <img src="/images/logo.png" alt="Place I Know" className="header__logo" />
+          </Link>
+          <a href="javascript:;" onClick={this.clickMenuIcon}>
+            <Icon type={this.state.isMenuOpen ? 'close' : 'ellipsis'} />
+          </a>
+        </div>
+        <div
+          className={
+            this.state.isMenuOpen ? 'header__nav-mobile' : 'header__nav-mobile collapsed'
+          }
+        >
+          <Link to="/home">
+            <div className="header__nav-element">
+              <span>
+                <Icon type="home" />&nbsp;Home
+              </span>
+            </div>
+          </Link>
+          <Link to="/home">
+            <div className="header__nav-element">
+              <span className="active">
+                <Icon type="compass" />&nbsp;Trips
+              </span>
+            </div>
+          </Link>
+          <Link to="/chat">
+            <div className="header__nav-element">
+              <span>
+                <Icon type="message" />&nbsp;Chat
+              </span>
+            </div>
+          </Link>
           <UserInfo />
         </div>
       </div>

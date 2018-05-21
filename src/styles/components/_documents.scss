@@ -2,6 +2,11 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
+  @include for-phone-only {
+    > div {
+      margin: 6px 0;
+    }
+  }
 }
 
 .document__title {
@@ -29,6 +34,11 @@
     padding: 6px 8px;
     &:last-child {
       padding-right: 0;
+    }
+  }
+  @include for-phone-only {
+    .ant-divider:first-child {
+      display: none;
     }
   }
 }

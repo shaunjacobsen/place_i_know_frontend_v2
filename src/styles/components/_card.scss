@@ -3,17 +3,28 @@
   border: 1px solid darken($light-grey, 10%);
   display: block;
   margin-bottom: 16px;
-  transition: box-shadow .3s ease;
+  transition: box-shadow 0.3s ease;
   width: 100%;
   &:hover {
-    box-shadow: 0 3px 6px rgba(0,0,0,0.05), 0 3px 6px rgba(0,0,0,0.08);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05), 0 3px 6px rgba(0, 0, 0, 0.08);
   }
 }
 
 .card__content {
   align-items: stretch;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  .card__image--full-height {
+    height: 100%;
+  }
+  @include for-phone-only {
+    h4 {
+      margin-top: 8px;
+    }
+  }
+  @include for-desktop-up {
+    flex-direction: row;
+  }
 }
 
 .card__content--column {
@@ -46,10 +57,14 @@
   display: flex;
   align-content: stretch;
   img {
-    height: 100%;
-    width: 175px;
-    object-position: center;
+    height: 200px;
     object-fit: cover;
+    object-position: center;
+    width: 100%;
+    @include for-desktop-up {
+      height: 100%;
+      width: 175px;
+    }
   }
 }
 
@@ -65,7 +80,7 @@
 }
 
 .card__basic-information--red {
-  color: #F62B40;
+  color: #f62b40;
 }
 
 .card__actions {

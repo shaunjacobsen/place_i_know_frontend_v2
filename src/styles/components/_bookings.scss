@@ -4,6 +4,7 @@
 
 .booking-list__title {
   font-size: $font-size-medium;
+  margin-top: 8px;
   small {
     color: $grey;
     font-size: $font-size-small;
@@ -15,6 +16,7 @@
   border-radius: 4px;
   box-sizing: border-box;
   color: #fff;
+  margin-bottom: 12px;
   min-height: 32px;
   padding: 4px 15px;
   text-align: center;

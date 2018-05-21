@@ -125,6 +125,7 @@ export class ChatPage extends React.Component {
       return (
         <div className="chat">
           <div className="chat__contacts">
+          <wrapper->
             <RoomList
               user={user}
               rooms={user.rooms}
@@ -133,6 +134,7 @@ export class ChatPage extends React.Component {
               current={room}
               actions={this.actions}
             />
+            </wrapper->
           </div>
           {room.id ? (
             <div className="chat__conversation">

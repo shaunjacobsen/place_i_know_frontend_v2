@@ -54,7 +54,7 @@ export class Accommodation extends React.Component {
         <Row gutter={6}>
           <div className={this.determineCardOrientation()}>
             <Col xs={24} sm={this.props.isConfirmed ? 8 : 24}>
-              <div className="card__image">
+              <div className="card__image card__image--full-height">
                 <img src={this.props.place.image.secure_url} style={{ width: '100%' }} />
               </div>
             </Col>
@@ -71,13 +71,13 @@ export class Accommodation extends React.Component {
                   start={this.props.accommodation.check_in}
                   end={this.props.accommodation.check_out}
                 />
-                <Divider style={{ margin: '12px 0' }} />
+                <Divider />
                 <AccommodationInfo
                   confirmed={this.props.isConfirmed}
                   info={this.props.accommodation}
                   place={this.props.place}
                 />
-                <Divider style={{ margin: '12px 0' }} />
+                <Divider />
                 <div className="card__actions">{this.displayBookingActions()}</div>
               </div>
             </Col>

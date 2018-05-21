@@ -7,7 +7,7 @@ const { Meta } = Card;
 
 export const TripCard = props => {
   return (
-    <div>
+    <div className="trip__card">
     <Link to={`/trip/${props.tripId}`}>
       <Card
         cover={

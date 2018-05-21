@@ -14,6 +14,11 @@
   transition: all 0.2s ease-out;
   width: 200px;
   z-index: 100;
+  @include for-phone-only {
+    height: 75px;
+    width: 75px;
+    margin-left: 16px;
+  }
 }
 
 .account__header__info {
@@ -31,6 +36,13 @@
   p {
     margin-bottom: 0;
   }
+  @include for-phone-only {
+    bottom: 16px;
+    padding: 24px 16px;
+    h1 {
+      font-size: 28px;
+    }
+  }
 }
 
 .account__main {
@@ -43,6 +55,12 @@
   }
   .ant-alert {
     margin: 16px 0;
+  }
+  @include for-phone-only {
+    top: 0;
+    h3 {
+      margin-top: 16px;
+    }
   }
 }
 

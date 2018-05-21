@@ -6,6 +6,10 @@
   flex-direction: row;
   height: 70vh;
   width: 100%;
+  @include for-phone-only {
+    flex-direction: column;
+    height: 80vh;
+  }
 }
 
 .chat__contacts {
@@ -13,6 +17,15 @@
   display: flex;
   flex-basis: 30%;
   flex-direction: column;
+  @include for-phone-only {
+    border-bottom: 1px solid darken($light-grey, 10%);
+    border-right: none;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.05), 0 3px 6px rgba(0, 0, 0, 0.08);
+    flex-grow: 0;
+    height: 10px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
 }
 
 .chat__contact {
@@ -36,11 +49,18 @@
   &:hover {
     background: darken($light-grey, 1%);
   }
+  @include for-phone-only {
+    padding: 8px 16px;
+  }
 }
 
 .chat__contact__details {
   flex-direction: column;
   flex-grow: 1;
+  @include for-phone-only {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
 }
 
 .chat__contact-avatar {
@@ -49,6 +69,10 @@
   div {
     display: inline-block;
     margin-right: 6px;
+  }
+  @include for-phone-only {
+    margin: 0 auto;
+    flex-grow: 0;
   }
 }
 
@@ -60,10 +84,16 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 150px;
+  @include for-phone-only {
+    display: none;
+  }
 }
 
 .chat__contact-room-title {
   flex-grow: 1;
+  @include for-phone-only {
+    flex-grow: 0;
+  }
 }
 
 .chat__contact-unread-count {
@@ -97,6 +127,9 @@
       }
     }
   }
+  @include for-phone-only {
+    display: none;
+  }
 }
 
 .chat__conversation__list {
@@ -107,6 +140,9 @@
   overflow: hidden;
   overflow-y: auto;
   padding: 16px 24px;
+  @include for-phone-only {
+    padding: 16px;
+  }
 }
 
 .chat__conversation__message {
@@ -119,6 +155,9 @@
   &.right {
     justify-content: flex-end;
     margin-left: 150px;
+    @include for-phone-only {
+      margin-left: 50px;
+    }
     p {
       text-align: right;
     }
@@ -140,6 +179,9 @@
     display: flex;
     font-size: 1rem;
     position: relative;
+  }
+  @include for-phone-only {
+    max-width: calc(100% - 50px);
   }
 }
 

@@ -22,7 +22,7 @@ export class AccountPageHeader extends React.Component {
             <TabPane
               tab={
                 <span>
-                  <Icon type="user" />Profile & Contact Info
+                  <Icon type="user" />Profile
                 </span>
               }
               key={1}

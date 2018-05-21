@@ -1,6 +1,12 @@
 .user-info {
   align-items: center;
   display: flex;
+  @include for-phone-only {
+    img {
+      height: 30px;
+      width: 30px;
+    }
+  }
 }
 
 .user-info__avatar {

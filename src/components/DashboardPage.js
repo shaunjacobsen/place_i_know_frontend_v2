@@ -19,7 +19,7 @@ export class Dashboard extends React.Component {
     return (
       <Row gutter={16}>
         {this.props.trips.map(trip => (
-          <Col key={trip.trip_id} xs={24} md={8}>
+          <Col key={trip.trip_id} xs={24} md={8} gutter={8}>
             <TripCard
               key={trip.trip_id}
               tripId={trip.trip_id}

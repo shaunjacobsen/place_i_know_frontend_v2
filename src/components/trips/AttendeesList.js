@@ -58,7 +58,6 @@ export class AttendeesList extends React.Component {
       return (
         <div>
           {attendees}
-          <Avatar shape="square" size="large" icon="plus" />
         </div>
       );
     } else {

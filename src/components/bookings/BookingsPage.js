@@ -7,13 +7,32 @@ import TrainPanel from './trains/TrainPanel';
 const TabPane = Tabs.TabPane;
 
 export class BookingsPage extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      height: 0,
+      width: 0,
+    };
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions = () => {
+    this.setState(() => ({ width: window.innerWidth, height: window.innerHeight }));
+  }
+
   render() {
     return (
       <div>
-        <Tabs
-          tabPosition="left"
-          defaultActiveKey="1"
-        >
+        <Tabs tabPosition={this.state.width >= 900 ? 'left' : 'top'} defaultActiveKey="1">
           <TabPane tab="Hotels" key="1">
             <Alert
               message="Ready to book?"
