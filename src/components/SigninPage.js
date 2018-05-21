@@ -4,9 +4,22 @@ import { signIn, startSignOut } from './../actions/auth';
 import SignInForm from './SignInForm';
 
 export class SignInPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activePage: 'signIn',
+    };
+  }
+
   onSubmit = data => {
     this.props.signIn(data);
   };
+
+  handleClickForgotPassword = () => {
+    this.setState(() => ({
+      activePage: 'forgotPassword',
+    }));
+  }
 
   render() {
     return (
@@ -18,7 +31,13 @@ export class SignInPage extends React.Component {
             alt="Place I Know"
           />
           <h1 className="box-layout__title">Welcome</h1>
-          <SignInForm onSubmit={this.onSubmit} />
+          {this.state.activePage === 'signIn' && (
+            <SignInForm
+              onSubmit={this.onSubmit}
+              onClickForgotPassword={() => this.handleClickForgotPassword()}
+            />
+          )}
+          {this.state.activePage === 'forgotPassword' && <p>Forgot password</p>}
         </div>
       </div>
     );

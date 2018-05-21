@@ -36,6 +36,10 @@ export class SignInForm extends React.Component {
     }
   };
 
+  handleClickForgotPassword = () => {
+    this.props.handleClickForgotPassword;
+  }
+
   render() {
     return (
       <Spin spinning={this.props.loading}>
@@ -64,6 +68,13 @@ export class SignInForm extends React.Component {
             Sign in
           </Button>
         </Form>
+        <button
+          onClick={() => this.handleClickForgotPassword()}
+          className="button button--link"
+          style={{ color: '#666666' }}
+        >
+          Forgot your password?
+        </button>
       </Spin>
     );
   }
