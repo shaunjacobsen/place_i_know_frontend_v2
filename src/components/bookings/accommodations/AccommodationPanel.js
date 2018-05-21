@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Spin, Icon } from 'antd';
-import { getActiveTripAccommodationsData } from './../../actions/accommodations';
+import { getActiveTripAccommodationsData } from './../../../actions/accommodations';
 import AccommodationGroupList from './AccommodationGroupList';
 
 export class AccommodationPanel extends React.Component {

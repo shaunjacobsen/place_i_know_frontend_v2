@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { Alert, Icon, Divider, Button, Rate, Row, Col, message } from 'antd';
 import moment from 'moment';
 import { AccommodationInfo } from './AccommodationInfo';
-import { DateRange } from './../DateRange';
-import { accommodationMarkSelected } from './../../actions/accommodations';
-import { selectElementById } from '../../selectors/booking';
-import { selectPlaceById } from '../../selectors/place';
+import { DateRange } from './../../DateRange';
+import { accommodationMarkSelected } from './../../../actions/accommodations';
+import { selectElementById } from '../../../selectors/booking';
+import { selectPlaceById } from '../../../selectors/place';
 
 export class Accommodation extends React.Component {
   handleAccommodationSelection = () => {

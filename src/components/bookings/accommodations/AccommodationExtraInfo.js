@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon, Divider } from 'antd';
-import { PlaceLocationDetails } from './../places/PlaceLocationDetails';
+import { PlaceLocationDetails } from './../../places/PlaceLocationDetails';
 
 export const AccommodationExtraInfo = props => {
   const mapInfo = {

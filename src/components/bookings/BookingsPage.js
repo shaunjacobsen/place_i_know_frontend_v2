@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Alert, Tabs, Icon } from 'antd';
-import AccommodationPanel from './AccommodationPanel';
+import AccommodationPanel from './accommodations/AccommodationPanel';
 import FlightPanel from './flights/FlightPanel';
 import TrainPanel from './trains/TrainPanel';
 const TabPane = Tabs.TabPane;
@@ -12,7 +12,7 @@ export class BookingsPage extends React.Component {
       <div>
         <Tabs
           tabPosition="left"
-          defaultActiveKey="3"
+          defaultActiveKey="1"
         >
           <TabPane tab="Hotels" key="1">
             <Alert

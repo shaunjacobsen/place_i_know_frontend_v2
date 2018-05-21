@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Row, Col, Icon, Spin } from 'antd';
 import moment from 'moment';
 import Accommodation from './Accommodation';
-import { DateRange } from './../DateRange';
-import { showAccommodationsForGroupBasedOnConfirmationStatus } from './../../selectors/accommodation';
+import { DateRange } from './../../DateRange';
+import { showAccommodationsForGroupBasedOnConfirmationStatus } from './../../../selectors/accommodation';
 
 export class AccommodationGroup extends React.Component {
   renderTitle() {
