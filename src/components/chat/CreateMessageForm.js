@@ -21,7 +21,7 @@ export const CreateMessageForm = ({
           placeholder="Type your message..."
           onInput={e => user.isTypingIn({ roomId: room.id })}
         />
-        <Button type="primary" icon="arrow-right" />
+        <Button type="primary" icon="arrow-right" htmlType="submit" />
       </form>
     </div>
   ) : null;

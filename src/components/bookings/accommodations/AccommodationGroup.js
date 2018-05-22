@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Row, Col, Icon, Spin } from 'antd';
+import { Row, Col, Icon, Spin, Divider } from 'antd';
 import moment from 'moment';
 import Accommodation from './Accommodation';
 import { DateRange } from './../../DateRange';
@@ -47,6 +47,7 @@ export class AccommodationGroup extends React.Component {
     return (
       <div>
         <h3 className="booking-list__title">{this.renderTitle()}</h3>
+        <Divider />
         <Row gutter={6}>
           {this.props.group.accommodation.sort((a, b) => a - b).map(accommodationId => {
             return (
