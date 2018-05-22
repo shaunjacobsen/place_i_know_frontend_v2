@@ -1,0 +1,86 @@
+.alert {
+  align-items: flex-start;
+  background: lighten($grey, 40%);
+  border: 1px solid $grey;
+  border-radius: 4px;
+  display: flex;
+  justify-content: flex-start;
+  margin: 12px auto;
+  padding: 16px 24px;
+  text-align: left;
+  &.alert--error {
+    background: lighten($volcano, 35%);
+    border-color: $volcano;
+    color: darken($volcano, 10%);
+    button {
+      background: none;
+      border-color: $volcano;
+      color: darken($volcano, 10%);
+    }
+  }
+  &.alert--warning {
+    background: lighten($orange, 40%);
+    border-color: $orange;
+    color: darken($orange, 8%);
+    button {
+      background: none;
+      border-color: $orange;
+      color: darken($orange, 8%);
+    }
+  }
+  &.alert--success {
+    background: lighten($cyan, 50%);
+    border-color: $cyan;
+    color: darken($cyan, 10%);
+    button {
+      background: none;
+      border-color: $cyan;
+      color: darken($cyan, 10%);
+    }
+  }
+  &.alert--primary {
+    background: lighten($brand-teal, 27%);
+    border-color: $brand-teal;
+    color: darken($brand-teal, 20%);
+    button {
+      background: none;
+      border-color: $brand-teal;
+      color: darken($brand-teal, 20%);
+    }
+  }
+  .anticon {
+    font-size: 2.1rem;
+  }
+}
+
+.alert__icon {
+  margin-right: 12px;
+}
+
+.alert__body {
+  display: flex;
+  flex-direction: column;
+}
+
+.alert__title {
+  font-size: 1.8rem;
+  position: relative;
+  top: -3px;
+}
+
+.alert__text {
+  font-weight: 300;
+}
+
+.alert__actions {
+  display: flex;
+  flex-direction: row;
+  margin-top: 12px;
+}
+
+.alert__action {
+  margin-right: 12px;
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
