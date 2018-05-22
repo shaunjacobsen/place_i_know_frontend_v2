@@ -8,7 +8,8 @@ export const getItinerary = tripId => {
       .get(`${process.env.REACT_APP_API_URL}/trip/${tripId}/itineraries`, {
         headers: { 'x-auth': authToken },
       })
-      .then(response => dispatch(getItinerarySuccess(response.data[0])));
+      .then(response => dispatch(getItinerarySuccess(response.data[0])))
+      .catch(() => dispatch(getItineraryError('ERROR')));
   };
 };
 

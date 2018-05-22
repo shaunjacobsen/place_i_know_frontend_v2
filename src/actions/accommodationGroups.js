@@ -17,7 +17,11 @@ export const getAccommodationGroups = tripId => {
         dispatch(getAccommodationGroupsSuccess(data));
       }
     } catch (e) {
-      dispatch(getAccommodationGroupsError());
+      if (e.response) {
+        dispatch(getAccommodationGroupsError(e.response.status));
+      } else {
+        dispatch(getAccommodationGroupsError('NETWORK_ERROR'));
+      }
     }
   };
 };

@@ -15,7 +15,11 @@ export const getCharges = tripId => {
         dispatch(getChargesSuccess(response.data));
       }
     } catch (e) {
-      dispatch(getChargesError(e));
+      if (e.response) {
+        dispatch(getChargesError(e.response.status));
+      } else {
+        dispatch(getChargesError('NETWORK_ERROR'));
+      }
     }
   };
 };

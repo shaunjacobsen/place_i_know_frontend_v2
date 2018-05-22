@@ -22,7 +22,10 @@ export class FlightPanel extends React.Component {
     }
     return (
       <div>
-        <FlightGroupList groups={this.props.trip.flightGroups.data} />
+        <FlightGroupList
+          groups={this.props.trip.flightGroups.data}
+          reload={() => this.props.getFlightData(this.props.trip.trip_id)}
+        />
       </div>
     );
   }

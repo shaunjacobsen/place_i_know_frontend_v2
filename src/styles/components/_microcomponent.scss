@@ -3,6 +3,7 @@
   background: lighten($grey, 40%);
   border: 1px solid $grey;
   border-radius: 4px;
+  color: $slate-grey;
   display: flex;
   justify-content: flex-start;
   margin: 12px auto;
@@ -11,7 +12,6 @@
   &.alert--error {
     background: lighten($volcano, 35%);
     border-color: $volcano;
-    color: darken($volcano, 10%);
     button {
       background: none;
       border-color: $volcano;
@@ -21,7 +21,6 @@
   &.alert--warning {
     background: lighten($orange, 40%);
     border-color: $orange;
-    color: darken($orange, 8%);
     button {
       background: none;
       border-color: $orange;
@@ -31,7 +30,6 @@
   &.alert--success {
     background: lighten($cyan, 50%);
     border-color: $cyan;
-    color: darken($cyan, 10%);
     button {
       background: none;
       border-color: $cyan;
@@ -41,7 +39,6 @@
   &.alert--primary {
     background: lighten($brand-teal, 27%);
     border-color: $brand-teal;
-    color: darken($brand-teal, 20%);
     button {
       background: none;
       border-color: $brand-teal;

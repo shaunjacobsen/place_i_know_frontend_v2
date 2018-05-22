@@ -5,9 +5,9 @@ import { getTrainGroups } from './trainGroups';
 export const getActiveTripTrainData = tripId => {
   return dispatch => {
     dispatch(getActiveTripTrainDataStart());
-    Promise.all([dispatch(getTrainGroups(tripId)), dispatch(getTrains(tripId))]).then(
-      () => dispatch(getActiveTripTrainDataSuccess())
-    );
+    Promise.all([dispatch(getTrainGroups(tripId)), dispatch(getTrains(tripId))])
+      .then(() => dispatch(getActiveTripTrainDataSuccess()))
+      .catch(() => dispatch(getActiveTripTrainDataError('ERROR')));
   };
 };
 
@@ -46,7 +46,11 @@ export const getTrains = (tripId, loadingType = 'initial') => {
         dispatch(getTrainsSuccess(data));
       }
     } catch (e) {
-      dispatch(getTrainsError(e));
+      if (e.response) {
+        dispatch(getTrainsError(e.response.status));
+      } else {
+        dispatch(getTrainsError('NETWORK_ERROR'));
+      }
     }
   };
 };

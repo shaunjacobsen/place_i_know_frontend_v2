@@ -27,7 +27,7 @@ export default (state = initialState, action) => {
     case 'TRAIN_SELECT_START':
       return {
         ...state,
-        error: null,
+        selectError: null,
       };
     case 'TRAIN_SELECT_SUCCESS':
       return {
@@ -37,6 +37,7 @@ export default (state = initialState, action) => {
     case 'TRAIN_SELECT_ERROR':
       return {
         ...state,
+        selectError: null,
         error: action.error,
       };
     default:

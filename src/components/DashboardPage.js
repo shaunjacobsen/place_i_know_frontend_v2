@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Spin, Icon, Col, Row } from 'antd';
+import { Spin, Icon, Col, Row, Button } from 'antd';
+import { Alert } from './microcomponents/Alert';
 import { TripCard } from './trips/TripCard';
 import { getTrips } from '../actions/trip';
 import { resetActiveTrip } from '../actions/activeTrip';
@@ -11,8 +12,8 @@ export class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(getTrips());
-    this.props.dispatch(resetActiveTrip());
+    this.props.getTrips();
+    this.props.resetActiveTrip();
   }
 
   renderTrips() {
@@ -36,7 +37,21 @@ export class Dashboard extends React.Component {
 
   renderContent() {
     if (this.props.error) {
-      return <div />;
+      return (
+        <Alert
+          title="Couldn't load trips"
+          type="error"
+          actions={[
+            <Button onClick={this.props.getTrips}>
+              Refresh
+            </Button>,
+          ]}
+          icon
+        >
+          There was a problem loading your trips. Please try again or contact your travel
+          planner.
+        </Alert>
+      );
     } else if (this.props.loading) {
       return <Spin size="large" indicator={<Icon type="loading" spin />} />;
     } else if (this.props.trips) {
@@ -66,4 +81,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Dashboard);
+const mapDispatchToProps = dispatch => ({
+  getTrips: () => dispatch(getTrips()),
+  resetActiveTrip: () => dispatch(resetActiveTrip()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

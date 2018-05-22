@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { mapLoadPoints } from './map';
 import { getPlaces } from './places';
-import { getItinerary } from './itinerary';
+import { getItinerary, getItineraryError } from './itinerary';
 import { getItineraryDays } from './itineraryDays';
 import { getEvents } from './events';
 
@@ -21,13 +21,17 @@ export const setActiveTrip = trip => {
 export const getActiveTripAssociatedData = tripId => {
   return dispatch => {
     dispatch(getActiveTripAssociatedDataStart());
-    dispatch(getItinerary(tripId)).then(response => {
-      Promise.all([
-        dispatch(getItineraryDays(response.itinerary.itinerary_id)),
-        dispatch(getEvents(response.itinerary.itinerary_id)),
-        dispatch(getPlaces(tripId)),
-      ]).then(() => dispatch(getActiveTripAssociatedDataSuccess()));
-    });
+    dispatch(getItinerary(tripId))
+      .then(response => {
+        Promise.all([
+          dispatch(getItineraryDays(response.itinerary.itinerary_id)),
+          dispatch(getEvents(response.itinerary.itinerary_id)),
+          dispatch(getPlaces(tripId)),
+        ])
+          .then(() => dispatch(getActiveTripAssociatedDataSuccess()))
+          .catch(() => dispatch(getActiveTripAssociatedDataError('ERROR')));
+      })
+      .catch(() => dispatch(getItineraryError('ERROR')));
   };
 };
 

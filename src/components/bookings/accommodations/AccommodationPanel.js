@@ -22,7 +22,10 @@ export class AccommodationPanel extends React.Component {
     }
     return (
       <div>
-        <AccommodationGroupList groups={this.props.trip.accommodationGroups.data} />
+        <AccommodationGroupList
+          groups={this.props.trip.accommodationGroups.data}
+          reload={() => this.props.getAccommodationData(this.props.trip.trip_id)}
+        />
       </div>
     );
   }

@@ -16,7 +16,13 @@ export const getEvents = itineraryId => {
         dispatch(getEventsSuccess(data));
       }
     } catch (e) {
-      dispatch(getEventsError(e));
+      if (e.response) {
+        dispatch(getEventsError(e.response.status));
+        return Promise.reject();
+      } else {
+        dispatch(getEventsError('NETWORK_ERROR'));
+        return Promise.reject();
+      }
     }
   };
 };

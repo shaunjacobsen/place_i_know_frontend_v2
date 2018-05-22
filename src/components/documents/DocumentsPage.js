@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Spin, Icon } from 'antd';
-import { DocumentGroupsList } from './DocumentGroupsList';
+import DocumentGroupsList from './DocumentGroupsList';
 import { getDocumentGroups } from './../../actions/documentGroups';
 
 export class DocumentsPage extends React.Component {
@@ -22,7 +22,10 @@ export class DocumentsPage extends React.Component {
     }
     return (
       <div>
-        <DocumentGroupsList groups={this.props.trip.documentGroups.data} />
+        <DocumentGroupsList
+          groups={this.props.trip.documentGroups.data}
+          reload={() => this.props.getDocuments(this.props.trip.trip_id)}
+        />
       </div>
     );
   }

@@ -17,7 +17,11 @@ export const getTrainGroups = tripId => {
         dispatch(getTrainGroupsSuccess(data));
       }
     } catch (e) {
-      dispatch(getTrainGroupsError());
+      if (e.response) {
+        dispatch(getTrainGroupsError(e.response.status));
+      } else {
+        dispatch(getTrainGroupsError('NETWORK_ERROR'));
+      }
     }
   };
 };

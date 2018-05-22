@@ -47,7 +47,7 @@ export class BookingsPage extends React.Component {
           <TabPane tab="Flights" key="2">
             <FlightPanel />
           </TabPane>
-          <TabPane tab="Train/Bus" key="3">
+          <TabPane tab="Transportation" key="3">
             <TrainPanel />
           </TabPane>
         </Tabs>

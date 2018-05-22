@@ -17,7 +17,11 @@ export const getDocumentGroups = tripId => {
         dispatch(getDocumentGroupsSuccess(data));
       }
     } catch (e) {
-      dispatch(getDocumentGroupsError());
+      if (e.response) {
+        dispatch(getDocumentGroupsError(e.response.status));
+      } else {
+        dispatch(getDocumentGroupsError('NETWORK_ERROR'));
+      }
     }
   };
 };

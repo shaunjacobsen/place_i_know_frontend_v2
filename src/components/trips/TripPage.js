@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { Divider, Tabs, Badge, Button, Spin, Icon } from 'antd';
+import { Alert } from './../microcomponents/Alert';
 import { TripHeader } from './TripHeader';
 import { LoadingIndicator } from './../LoadingIndicator';
 import TripInfo from './TripInfo';
@@ -24,6 +25,32 @@ export class TripPage extends React.Component {
   }
 
   render() {
+    if (
+      this.props.activeTrip &&
+      (this.props.activeTrip.error ||
+        (this.props.activeTrip.itinerary && this.props.activeTrip.itinerary.error))
+    ) {
+      return (
+        <Alert
+          type="error"
+          title="Error loading trip"
+          actions={[
+            <Button
+              onClick={() =>
+                this.props.getActiveTripAssociatedData(this.props.trip.trip_id)
+              }
+            >
+              Reload
+            </Button>,
+          ]}
+          icon
+        >
+          There was an error loading the information for your trip. Please check your
+          Internet connection and try again. If you have any questions, please contact
+          your travel planner using our chat, or email us: go@placeiknow.com
+        </Alert>
+      );
+    }
     if (this.props.activeTrip.loading === undefined || this.props.activeTrip.loading) {
       return (
         <div className="content-area">
@@ -32,7 +59,11 @@ export class TripPage extends React.Component {
             startDate={this.props.trip.start_date}
             endDate={this.props.trip.end_date}
           />
-          <LoadingIndicator size="large" title="Loading Trip" />
+          <LoadingIndicator
+            size="large"
+            title="Loading Trip"
+            reload={() => this.props.getActiveTripAssociatedData(this.props.trip.trip_id)}
+          />
         </div>
       );
     }

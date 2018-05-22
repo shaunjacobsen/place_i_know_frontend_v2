@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
     case 'ACCOMMODATION_SELECT_START':
       return {
         ...state,
-        error: null,
+        selectError: null,
       };
     case 'ACCOMMODATION_SELECT_SUCCESS':
       return {
@@ -34,7 +34,7 @@ export default (state = initialState, action) => {
     case 'ACCOMMODATION_SELECT_ERROR':
       return {
         ...state,
-        error: action.error,
+        selectError: action.error,
       };
     default:
       return state;

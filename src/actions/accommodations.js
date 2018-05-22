@@ -8,7 +8,9 @@ export const getActiveTripAccommodationsData = tripId => {
     Promise.all([
       dispatch(getAccommodationGroups(tripId)),
       dispatch(getAccommodations(tripId)),
-    ]).then(() => dispatch(getActiveTripAccommodationsDataSuccess()));
+    ])
+      .then(() => dispatch(getActiveTripAccommodationsDataSuccess()))
+      .catch(() => dispatch(getActiveTripAccommodationsDataError('ERROR')));
   };
 };
 
@@ -47,7 +49,11 @@ export const getAccommodations = (tripId, loadingType = 'initial') => {
         dispatch(getAccommodationsSuccess(data));
       }
     } catch (e) {
-      dispatch(getAccommodationsError(e));
+      if (e.response) {
+        dispatch(getAccommodationsError(e.response.status));
+      } else {
+        dispatch(getAccommodationsError('NETWORK_ERROR'));
+      }
     }
   };
 };

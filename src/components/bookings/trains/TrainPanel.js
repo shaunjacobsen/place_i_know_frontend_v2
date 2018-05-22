@@ -22,7 +22,10 @@ export class TrainPanel extends React.Component {
     }
     return (
       <div>
-        <TrainGroupList groups={this.props.trip.trainGroups.data} />
+        <TrainGroupList
+          groups={this.props.trip.trainGroups.data}
+          reload={() => this.props.getTrainData(this.props.trip.trip_id)}
+        />
       </div>
     );
   }

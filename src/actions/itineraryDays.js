@@ -16,7 +16,13 @@ export const getItineraryDays = itineraryId => {
         dispatch(getItineraryDaysSuccess(data));
       }
     } catch (e) {
-      dispatch(getItineraryDaysError(e));
+      if (e.response) {
+        dispatch(getItineraryDaysError(e.response.status));
+        return Promise.reject();
+      } else {
+        dispatch(getItineraryDaysError('NETWORK_ERROR'));
+        return Promise.reject();
+      }
     }
   };
 };

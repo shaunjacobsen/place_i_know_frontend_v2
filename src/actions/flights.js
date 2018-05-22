@@ -5,9 +5,9 @@ import { getFlightGroups } from './flightGroups';
 export const getActiveTripFlightData = tripId => {
   return dispatch => {
     dispatch(getActiveTripFlightDataStart());
-    Promise.all([dispatch(getFlightGroups(tripId)), dispatch(getFlights(tripId))]).then(
-      () => dispatch(getActiveTripFlightDataSuccess())
-    );
+    Promise.all([dispatch(getFlightGroups(tripId)), dispatch(getFlights(tripId))])
+      .then(() => dispatch(getActiveTripFlightDataSuccess()))
+      .catch(() => dispatch(getActiveTripFlightDataError('ERROR')));
   };
 };
 
@@ -46,7 +46,11 @@ export const getFlights = (tripId, loadingType = 'initial') => {
         dispatch(getFlightsSuccess(data));
       }
     } catch (e) {
-      dispatch(getFlightsError(e));
+      if (e.response) {
+        dispatch(getFlightsError(e.response.status));
+      } else {
+        dispatch(getFlightsError('NETWORK_ERROR'));
+      }
     }
   };
 };

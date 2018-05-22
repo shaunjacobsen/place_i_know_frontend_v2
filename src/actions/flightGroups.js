@@ -17,7 +17,11 @@ export const getFlightGroups = tripId => {
         dispatch(getFlightGroupsSuccess(data));
       }
     } catch (e) {
-      dispatch(getFlightGroupsError());
+      if (e.response) {
+        dispatch(getFlightGroupsError(e.response.status));
+      } else {
+        dispatch(getFlightGroupsError('NETWORK_ERROR'));
+      }
     }
   };
 };

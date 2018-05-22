@@ -16,7 +16,13 @@ export const getPlaces = tripId => {
         dispatch(getPlacesSuccess(data));
       }
     } catch (e) {
-      dispatch(getPlacesError(e));
+      if (e.response) {
+        dispatch(getPlacesError(e.response.status));
+        return Promise.reject();
+      } else {
+        dispatch(getPlacesError('NETWORK_ERROR'));
+        return Promise.reject();
+      }
     }
   };
 };

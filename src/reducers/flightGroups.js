@@ -27,7 +27,7 @@ export default (state = initialState, action) => {
     case 'FLIGHT_SELECT_START':
       return {
         ...state,
-        error: null,
+        selectError: null,
       };
     case 'FLIGHT_SELECT_SUCCESS':
       return {
@@ -37,7 +37,7 @@ export default (state = initialState, action) => {
     case 'FLIGHT_SELECT_ERROR':
       return {
         ...state,
-        error: action.error,
+        selectError: action.error,
       };
     default:
       return state;
