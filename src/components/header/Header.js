@@ -42,7 +42,7 @@ export class Header extends React.Component {
             </Link>
             <Link to="/trips">
               <div className="header__nav-element">
-                <span className={this.isActiveNavItem('trip')}>
+                <span className={this.isActiveNavItem('trips')}>
                   <Icon type="compass" />&nbsp;Trips
                 </span>
               </div>
