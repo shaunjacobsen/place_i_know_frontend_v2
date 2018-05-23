@@ -67,12 +67,13 @@ export class Document extends React.Component {
               )}
             </button>
           </Tooltip>
+          {/*
           <Divider type="vertical" />
           <Tooltip title="Share">
             <button className="button button--link" onClick={this.handleShare}>
               <Icon type="export" />
             </button>
-          </Tooltip>
+          </Tooltip>*/}
         </div>
       </div>
     );
