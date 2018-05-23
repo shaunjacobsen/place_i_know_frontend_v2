@@ -1,15 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Form, Icon, Input, Button } from 'antd';
+import { Alert } from './microcomponents/Alert';
 const FormItem = Form.Item;
 
-export class SignInForm extends React.Component {
+export class ForgotPasswordForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       email: '',
-      password: '',
       submitted: false,
       error: '',
     };
@@ -20,19 +19,17 @@ export class SignInForm extends React.Component {
     this.setState(() => ({
       [name]: value,
     }));
-    this.props.handleChangeInSignInForm(name, value);
   };
 
   handleSubmit = e => {
     e.preventDefault();
 
-    if (!this.state.email || !this.state.password) {
-      this.setState(() => ({ error: 'Please enter your email and password.' }));
+    if (!this.state.email) {
+      this.setState(() => ({ error: 'Please enter your email address.' }));
     } else {
       this.setState(() => ({ error: '' }));
       this.props.onSubmit({
         email: this.state.email,
-        password: this.state.password,
       });
     }
   };
@@ -40,8 +37,17 @@ export class SignInForm extends React.Component {
   render() {
     return (
       <div>
+        <p>
+          Please enter your email address below. If you have an account with Place I Know,
+          we will send you an email containing a link to reset your password. Please allow
+          up to 5 minutes for this email to arrive.
+        </p>
         <Form className="form" onSubmit={this.handleSubmit}>
-          {this.state.error && <p>{this.state.error}</p>}
+          {this.state.error && (
+            <Alert type="error" title="Fields missing" icon>
+              {this.state.error}
+            </Alert>
+          )}
           <FormItem>
             <Input
               prefix={<Icon type="user" />}
@@ -53,23 +59,13 @@ export class SignInForm extends React.Component {
               autoFocus
             />
           </FormItem>
-          <FormItem>
-            <Input
-              prefix={<Icon type="lock" />}
-              onChange={this.handleChange}
-              disabled={this.state.loading}
-              placeholder="Password"
-              name="password"
-              type="password"
-            />
-          </FormItem>
           <Button
             type="primary"
             htmlType="submit"
             className="login-form-button"
             loading={this.state.loading}
           >
-            Sign in
+            Request new password
           </Button>
         </Form>
       </div>
@@ -77,11 +73,4 @@ export class SignInForm extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    loading: state.auth.loading || false,
-    error: state.auth.error,
-  };
-};
-
-export default connect(mapStateToProps)(SignInForm);
+export default ForgotPasswordForm;

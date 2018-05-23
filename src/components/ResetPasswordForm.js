@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Alert, Form, Icon, Input, Button, Spin } from 'antd';
+import { Form, Icon, Input, Button, Spin } from 'antd';
+import { Alert } from './microcomponents/Alert';
 const FormItem = Form.Item;
 
 export class ResetPasswordForm extends React.Component {
@@ -44,10 +45,16 @@ export class ResetPasswordForm extends React.Component {
     };
 
     return (
-      <Spin spinning={this.props.loading}>
-        {!!this.state.error && <Alert message={this.state.error} type="error" showIcon />}
+      <div>
+        {!!this.state.error && (
+          <Alert title="Could not reset password" type="error" icon>
+            {this.state.error}
+          </Alert>
+        )}
         {!!this.props.networkError && (
-          <Alert message={this.props.networkError} type="error" showIcon />
+          <Alert title="Fields" type="error" icon>
+            {this.props.networkError}
+          </Alert>
         )}
         <Form className="form" onSubmit={this.handleSubmit} layout="vertical">
           <FormItem {...formItemLayout} label="New password">
@@ -73,7 +80,7 @@ export class ResetPasswordForm extends React.Component {
             Reset Password
           </Button>
         </Form>
-      </Spin>
+      </div>
     );
   }
 }
