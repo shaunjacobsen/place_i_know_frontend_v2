@@ -3,9 +3,6 @@ import { Message } from './Message';
 
 const emptyList = (
   <div className="">
-    <span role="img" aria-label="post">
-      📝
-    </span>
     <h2>No Messages Yet</h2>
     <p>Let us know if you have any questions about your trip!</p>
   </div>
