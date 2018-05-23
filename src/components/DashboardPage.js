@@ -19,7 +19,7 @@ export class Dashboard extends React.Component {
   renderTrips() {
     return (
       <Row gutter={16}>
-        {this.props.trips.map(trip => (
+        {this.props.trips.sort((a, b) => a.start_date < b.start_date).map(trip => (
           <Col key={trip.trip_id} xs={24} md={8} gutter={8}>
             <TripCard
               key={trip.trip_id}
