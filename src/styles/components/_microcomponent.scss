@@ -9,6 +9,7 @@
   margin: 12px auto;
   padding: 16px 24px;
   text-align: left;
+  width: 100%;
   &.alert--error {
     background: lighten($volcano, 35%);
     border-color: $volcano;

@@ -29,11 +29,13 @@ export const Alert = props => {
           <span>{props.title}</span>
         </div>
         <div className="alert__text">{props.children}</div>
-        <div className="alert__actions">
-          {props.actions && props.actions.map(action => {
-            return <div className="alert__action">{action}</div>;
-          })}
-        </div>
+        {props.actions && (
+          <div className="alert__actions">
+            {props.actions.map(action => {
+              return <div className="alert__action">{action}</div>;
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
