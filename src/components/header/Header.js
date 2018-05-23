@@ -21,6 +21,10 @@ export class Header extends React.Component {
     }));
   };
 
+  isActiveNavItem = path => {
+    return window.location.pathname.split('/')[1] === path ? 'active' : '';
+  };
+
   render() {
     return (
       <div className="header">
@@ -31,21 +35,21 @@ export class Header extends React.Component {
           <div className="header__nav">
             <Link to="/home">
               <div className="header__nav-element">
-                <span>
+                <span className={this.isActiveNavItem('home')}>
                   <Icon type="home" />&nbsp;Home
                 </span>
               </div>
             </Link>
-            <Link to="/home">
+            <Link to="/trips">
               <div className="header__nav-element">
-                <span className="active">
+                <span className={this.isActiveNavItem('trip')}>
                   <Icon type="compass" />&nbsp;Trips
                 </span>
               </div>
             </Link>
             <Link to="/chat">
               <div className="header__nav-element">
-                <span>
+                <span className={this.isActiveNavItem('chat')}>
                   <Icon type="message" />&nbsp;Chat
                 </span>
               </div>

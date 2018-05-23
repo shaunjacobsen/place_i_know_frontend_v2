@@ -26,6 +26,7 @@ const AppRouter = () => (
           component={ResetPasswordPage}
         />
         <PrivateRoute exact path="/home" component={DashboardPage} />
+        <PrivateRoute exact path="/trips" component={DashboardPage} />
         <PrivateRoute exact path="/chat" component={ChatPage} />
         <PrivateRoute exact path="/account" component={AccountPage} />
         <PrivateRoute exact path="/trip/:id" component={TripPage} />
