@@ -31,7 +31,7 @@ export class Header extends React.Component {
         <div className="header__content">
           <Link to="/home">
             <img src="/images/logo.png" alt="Place I Know" className="header__logo" />
-          </Link>
+          </Link>;
           <div className="header__nav">
             <Link to="/home">
               <div className="header__nav-element">

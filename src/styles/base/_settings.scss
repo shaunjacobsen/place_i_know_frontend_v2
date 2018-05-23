@@ -26,17 +26,22 @@ $cyan: #13c2c2;
 
 // media queries
 @mixin for-phone-only {
-  @media (max-width: 599px) {
+  @media (max-width: 699px) {
+    @content;
+  }
+}
+@mixin for-phone-landscape-only {
+  @media (max-width: 699px) and (orientation: landscape) {
     @content;
   }
 }
 @mixin for-tablet-portrait-up {
-  @media (min-width: 600px) {
+  @media (min-width: 700px) {
     @content;
   }
 }
 @mixin for-tablet-landscape-up {
-  @media (min-width: 900px) {
+  @media (min-width: 900px) and (orientation: landscape) {
     @content;
   }
 }

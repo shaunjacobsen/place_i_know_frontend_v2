@@ -105,7 +105,6 @@ export class SignInPage extends React.Component {
             alt="Place I Know"
           />
           <h1 className="box-layout__title">Welcome</h1>
-
           {this.state.activePage === 'signIn' && (
             <div>
               {this.renderError()}
