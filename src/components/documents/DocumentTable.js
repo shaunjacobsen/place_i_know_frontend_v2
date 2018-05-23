@@ -6,8 +6,8 @@ export const DocumentTable = props => {
     <div>
       {props.documents.map(doc => {
         return (
-          <div className="card">
-            <Document document={doc} />
+          <div key={doc.document_id} className="card">
+            <Document key={doc.document_id} document={doc} />
           </div>
         );
       })}

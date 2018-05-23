@@ -23,7 +23,12 @@ export class DocumentGroupsList extends React.Component {
       <div>
         {this.props.groups &&
           this.props.groups.map(documentGroup => {
-            return <DocumentGroup group={documentGroup} />;
+            return (
+              <DocumentGroup
+                key={documentGroup.document_group_id}
+                group={documentGroup}
+              />
+            );
           })}
       </div>
     );
