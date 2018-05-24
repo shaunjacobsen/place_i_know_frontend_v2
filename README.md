@@ -30,6 +30,8 @@ Mot de passe : demo2018
 Notez que, en ce moment, la site n'est disponible qu'en anglais.
 
 ## Technology, Integrations, & Dependencies
+
+:us: :uk:
 - **Javascript** (React.js).
 - Axios for HTTP requests.
 - Custom CSS (SCSS) for most components, Ant Design for some components.
@@ -41,6 +43,7 @@ Notez que, en ce moment, la site n'est disponible qu'en anglais.
   - Customers may chat one-on-one with their travel planner, or group chat with all other travellers on their trip.
   - Includes presence indicators and realtime typing indicators.
 
+:fr:
 - **Javascript** (React.js).
 - Axios pour les rêquetes HTTP.
 - **Amazon Web Services (AWS)**
