@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { history } from './../routers/AppRouter';
 
 export const signIn = data => {
   return async dispatch => {
@@ -57,6 +58,7 @@ export const startSignOut = () => {
       if (request.status === 200) {
         localStorage.clear();
         dispatch(signOut());
+        history.push('/signin');
       }
     } catch (e) {
       console.log(e);
