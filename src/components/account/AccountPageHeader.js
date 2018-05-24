@@ -31,6 +31,7 @@ export class AccountPageHeader extends React.Component {
             </TabPane>
 
             <TabPane
+              disabled
               tab={
                 <span>
                   <Icon type="idcard" />Official Documents
@@ -42,6 +43,7 @@ export class AccountPageHeader extends React.Component {
             </TabPane>
 
             <TabPane
+              disabled
               tab={
                 <span>
                   <Icon type="setting" />Settings
