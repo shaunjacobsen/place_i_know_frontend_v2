@@ -56,41 +56,41 @@ Notez que, en ce moment, la site n'est disponible qu'en anglais.
 
 ## Feature Walkthrough / Démonstration des fonctionnalités
 #### Sign In
-![Sign in page screenshot](https://res.cloudinary.com/placeiknow/image/upload/c_scale,w_775/v1527177649/demo/Sign_in.png)
+![Sign in page screenshot](https://res.cloudinary.com/placeiknow/image/upload/c_scale,w_900/v1527177649/demo/Sign_in.png)
 
 #### Trip list page
-![Trip list page screenshot](https://res.cloudinary.com/placeiknow/image/upload/c_scale,w_775/v1527177560/demo/Main_screen.png)
+![Trip list page screenshot](https://res.cloudinary.com/placeiknow/image/upload/c_scale,w_900/v1527177560/demo/Main_screen.png)
 This is the landing page after sign in.
 
 #### Trip info page
-![Trip info page screenshot](https://res.cloudinary.com/placeiknow/image/upload/c_scale,w_775/v1527177641/demo/Trip_info.png)
+![Trip info page screenshot](https://res.cloudinary.com/placeiknow/image/upload/c_scale,w_900/v1527177641/demo/Trip_info.png)
 Currently, this page shows only the other travellers on the same trip. Soon, it will include an option to add new travellers to the trip, a list of upcoming reservations and bookings, and the latest chat messages pertaining to the trip's group chat.
 
 #### Itinerary
-![Itinerary page screenshot](https://res.cloudinary.com/placeiknow/image/upload/c_scale,w_775/v1527177688/demo/Itinerary.png)
+![Itinerary page screenshot](https://res.cloudinary.com/placeiknow/image/upload/c_scale,w_900/v1527177688/demo/Itinerary.png)
 A planned itinerary is the core of the service offered. The itinerary page features a day-by-day list of events planned for the travellers. A Mapbox map is displayed for each event showing the location of highlighted events.
 
 #### Bookings
-![Hotel page screenshot](https://res.cloudinary.com/placeiknow/image/upload/c_scale,w_775/v1527177646/demo/Hotels.png)
+![Hotel page screenshot](https://res.cloudinary.com/placeiknow/image/upload/c_scale,w_900/v1527177646/demo/Hotels.png)
 When planning a trip, several hotel options are offered to the travellers at first. These are organized by "groups", often for the same destination. A traveller will choose the hotel they would like the travel planner to book. Upon booking confirmation, the unselected options disappear, and only the confirmed hotel is shown.
 
-![Train page screenshot](https://res.cloudinary.com/placeiknow/image/upload/c_scale,w_775/v1527177640/demo/Train.png)
+![Train page screenshot](https://res.cloudinary.com/placeiknow/image/upload/c_scale,w_900/v1527177640/demo/Train.png)
 The same workflow applies for flights, train, and bus reservations. The traveller chooses the option best suited for their style and budget, and the travel planner is notified & places the booking.
 
 #### Documents
-![Documents page screenshot](https://res.cloudinary.com/placeiknow/image/upload/c_scale,w_775/v1527177640/demo/Documents.png)
+![Documents page screenshot](https://res.cloudinary.com/placeiknow/image/upload/c_scale,w_900/v1527177640/demo/Documents.png)
 Organizing all of the documents for a trip can be a difficult task. The travel planner organizes documents into "document groups". These documents are stored in AWS S3 buckets and are downloaded via a signed URL. Only the travellers on the trip are permitted to download their documents.
 
 #### Statement
-![Statement page screenshot](https://res.cloudinary.com/placeiknow/image/upload/c_scale,w_775/v1527177641/demo/Statement.png)
+![Statement page screenshot](https://res.cloudinary.com/placeiknow/image/upload/c_scale,w_900/v1527177641/demo/Statement.png)
 Keeping track of finances before travelling is important to many travellers. The statement lists every purchase the travel planner has made on behalf of their travellers.
 
 #### Chat
-![Chat page screenshot](https://res.cloudinary.com/placeiknow/image/upload/c_scale,w_775/v1527178686/demo/Chat.png)
+![Chat page screenshot](https://res.cloudinary.com/placeiknow/image/upload/c_scale,w_900/v1527178686/demo/Chat.png)
 Chatting easily with your travel planner and travel companions is essential to a great vacation. This chat is built with Pusher ChatKit and includes separate rooms, presence indicators, typing indicators, and user avatars.
 
 #### Account management
-![Account page screenshot](https://res.cloudinary.com/placeiknow/image/upload/c_scale,w_775/v1527177640/demo/Account_page.png)
+![Account page screenshot](https://res.cloudinary.com/placeiknow/image/upload/c_scale,w_900/v1527177640/demo/Account_page.png)
 Travellers can update their personal information as well as upload and crop their avatar images from this page. Soon, travellers will be able to upload information about their official documents so that the travel planner has easy and up-to-date access to this information.
 
 
