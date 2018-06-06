@@ -34,5 +34,14 @@
     "eject": "react-scripts eject",
     "build-css": "node-sass-chokidar --include-path ./src/styles --include-path ./node_modules src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src/styles --include-path ./node_modules src/ -o src/ --watch --recursive"
+  },
+  "devDependencies": {
+    "cross-env": "^5.1.6",
+    "dotenv": "^6.0.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.4",
+    "jest": "^23.1.0",
+    "react-test-renderer": "^16.4.0"
   }
 }
