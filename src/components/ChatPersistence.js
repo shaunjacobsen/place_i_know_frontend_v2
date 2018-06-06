@@ -24,17 +24,17 @@ export class ChatPersistence extends React.Component {
       .connect()
       .then(currentUser => {
         this.props.setCurrentUserInStore(currentUser);
-        // if (currentUser.rooms.length > 0) {
-        //   currentUser.subscribeToRoom({
-        //     roomId: currentUser.rooms[0].id,
-        //     messageLimit: 50,
-        //     hooks: {
-        //       onNewMessage: message => {
-        //         this.props.logNewMessage(currentUser.rooms[0].id, message);
-        //       },
-        //     },
-        //   });
-        // }
+        if (currentUser.rooms.length > 0) {
+          currentUser.subscribeToRoom({
+            roomId: currentUser.rooms[0].id,
+            messageLimit: 50,
+            hooks: {
+              onNewMessage: message => {
+                this.props.logNewMessage(currentUser.rooms[0].id, message);
+              },
+            },
+          });
+        }
       })
       .catch(e => console.log(e));
   }
