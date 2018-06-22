@@ -31,7 +31,7 @@
     "history": "^4.7.2",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
-    "mapbox-gl": "^0.45.0-beta.1",
+    "mapbox-gl": "0.45.0",
     "moment": "^2.22.1",
     "node-sass-chokidar": "^1.2.2",
     "normalize.css": "^8.0.0",

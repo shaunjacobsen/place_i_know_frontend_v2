@@ -16,7 +16,7 @@ export class ItineraryEventExtraDetails extends React.Component {
         }
       >
         <PlaceLocationDetails
-          placeId={this.props.event.places[0]}
+          placeId={this.props.event.place_id}
           showHours={true}
           showMap={false}
         />

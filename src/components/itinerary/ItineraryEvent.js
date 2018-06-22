@@ -38,7 +38,7 @@ const mapStateToProps = (state, props) => {
   const event = selectEventById(props.eventId, state.activeTrip.events.data);
   return {
     event,
-    place: selectPlaceById(event.places[0], state.activeTrip.places.data),
+    place: selectPlaceById(event.place_id, state.activeTrip.places.data),
   };
 };
 
