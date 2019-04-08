@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Spin, Icon } from 'antd';
+import { Empty, Icon, Spin } from 'antd';
 import { getActiveTripAccommodationsData } from './../../../actions/accommodations';
 import AccommodationGroupList from './AccommodationGroupList';
 
@@ -19,6 +19,9 @@ export class AccommodationPanel extends React.Component {
           <Spin indicator={<Icon type="loading" spin />} /> Loading hotel groups...
         </div>
       );
+    }
+    if (this.props.trip.accommodationGroups.data.length === 0) {
+      return <Empty image="/images/plane-empty.png" />;
     }
     return (
       <div>
@@ -43,4 +46,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccommodationPanel);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AccommodationPanel);

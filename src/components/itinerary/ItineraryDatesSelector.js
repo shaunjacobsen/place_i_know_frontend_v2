@@ -10,9 +10,11 @@ export class ItineraryDatesSelector extends React.Component {
     return (
       <div className="itinerary-dates-selector">
         {typeof this.props.range !== 'undefined' &&
-          this.props.range.map(date => (
-            <ItineraryDatesSelectorOption key={date} date={date} />
-          ))}
+          this.props.range
+            .sort((a, b) => {
+              return new Date(a) - new Date(b);
+            })
+            .map(date => <ItineraryDatesSelectorOption key={date} date={date} />)}
       </div>
     );
   }

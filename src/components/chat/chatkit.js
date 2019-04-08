@@ -1,4 +1,4 @@
-import Chatkit from '@pusher/chatkit';
+import Chatkit from '@pusher/chatkit-client';
 
 export default ({ state, actions }, { id, token }) =>
   new Chatkit.ChatManager({

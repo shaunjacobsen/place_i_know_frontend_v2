@@ -4,6 +4,7 @@ import { getPlaces } from './places';
 import { getItinerary, getItineraryError } from './itinerary';
 import { getItineraryDays } from './itineraryDays';
 import { getEvents } from './events';
+import { getProposedItineraries } from './proposedItinerary';
 
 export const resetActiveTrip = () => {
   return {
@@ -27,6 +28,7 @@ export const getActiveTripAssociatedData = tripId => {
           dispatch(getItineraryDays(response.itinerary.itinerary_id)),
           dispatch(getEvents(response.itinerary.itinerary_id)),
           dispatch(getPlaces(tripId)),
+          dispatch(getProposedItineraries(tripId)),
         ])
           .then(() => dispatch(getActiveTripAssociatedDataSuccess()))
           .catch(() => dispatch(getActiveTripAssociatedDataError('ERROR')));

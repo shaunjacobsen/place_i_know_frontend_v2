@@ -16,7 +16,8 @@ export const ItineraryEvent = props => {
             <img
               src={
                 (props.event.image && props.event.image.secure_url) ||
-                props.place.image.secure_url
+                (props.place && props.place.image.secure_url) ||
+                'https://res.cloudinary.com/placeiknow/image/upload/v1507692917/faces/basic.png'
               }
             />
           </div>

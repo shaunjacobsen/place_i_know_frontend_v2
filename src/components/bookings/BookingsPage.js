@@ -27,21 +27,22 @@ export class BookingsPage extends React.Component {
 
   updateWindowDimensions = () => {
     this.setState(() => ({ width: window.innerWidth, height: window.innerHeight }));
-  }
+  };
 
   render() {
     return (
       <div>
+        <Alert
+          message="Ready to book?"
+          description="Once you've chosen a hotel in each destination, simply click on the checkmark. Your travel planner will place the booking and confirm as soon as possible."
+          type="info"
+          style={{ margin: '0 0 16px 0' }}
+          closable
+          showIcon
+        />
+
         <Tabs tabPosition={this.state.width >= 900 ? 'left' : 'top'} defaultActiveKey="1">
           <TabPane tab="Hotels" key="1">
-            <Alert
-              message="Ready to book?"
-              description="Once you've chosen a hotel in each destination, simply click on the checkmark. Your travel planner will place the booking and confirm as soon as possible."
-              type="info"
-              style={{ margin: '0 0 16px 0' }}
-              closable
-              showIcon
-            />
             <AccommodationPanel />
           </TabPane>
           <TabPane tab="Flights" key="2">
