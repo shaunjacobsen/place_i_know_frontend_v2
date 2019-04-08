@@ -10,6 +10,7 @@ import flightsReducer from './flights';
 import statementReducer from './statement';
 import trainGroupsReducer from './trainGroups';
 import trainsReducer from './trains';
+import proposedItineraryReducer from './proposedItinerary';
 const initialTripState = [];
 
 export default (state = initialTripState, action) => {
@@ -283,6 +284,21 @@ export default (state = initialTripState, action) => {
       return {
         ...state,
         charges: statementReducer(state.charges, action),
+      };
+    case 'GET_PROPOSED_ITINERARIES_START':
+      return {
+        ...state,
+        proposedItineraries: proposedItineraryReducer(state.proposedItineraries, action),
+      };
+    case 'GET_PROPOSED_ITINERARIES_ERROR':
+      return {
+        ...state,
+        proposedItineraries: proposedItineraryReducer(state.proposedItineraries, action),
+      };
+    case 'GET_PROPOSED_ITINERARIES_SUCCESS':
+      return {
+        ...state,
+        proposedItineraries: proposedItineraryReducer(state.proposedItineraries, action),
       };
     default:
       return state;

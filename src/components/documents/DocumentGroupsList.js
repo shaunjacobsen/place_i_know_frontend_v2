@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'antd';
+import { Button, Empty } from 'antd';
 import { Alert } from './../microcomponents/Alert';
 import { DocumentGroup } from './DocumentGroup';
 
@@ -19,19 +19,23 @@ export class DocumentGroupsList extends React.Component {
         </Alert>
       );
     }
-    return (
-      <div>
-        {this.props.groups &&
-          this.props.groups.map(documentGroup => {
-            return (
-              <DocumentGroup
-                key={documentGroup.document_group_id}
-                group={documentGroup}
-              />
-            );
-          })}
-      </div>
-    );
+    if (this.props.groups.length > 0) {
+      return (
+        <div>
+          {this.props.groups &&
+            this.props.groups.map(documentGroup => {
+              return (
+                <DocumentGroup
+                  key={documentGroup.document_group_id}
+                  group={documentGroup}
+                />
+              );
+            })}
+        </div>
+      );
+    } else {
+      return <Empty image="/images/plane-empty.png" />;
+    }
   }
 }
 

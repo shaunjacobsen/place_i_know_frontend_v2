@@ -2,9 +2,13 @@
   "name": "place_i_know_v2_front",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">10.0.0"
+  },
   "dependencies": {
     "@pusher/chatkit": "^0.7.12",
-    "antd": "^3.4.4",
+    "@pusher/chatkit-client": "^1.4.1",
+    "antd": "^3.16.2",
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",
     "babel-core": "6.26.0",
